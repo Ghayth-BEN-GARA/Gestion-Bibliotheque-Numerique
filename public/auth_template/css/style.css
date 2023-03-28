@@ -282,7 +282,7 @@ body {
 
 .form-row .form-group {
   width: 50%;
-  padding: 0 1px; 
+  padding: 0 18px; 
 }
 
 .form-group {
@@ -294,7 +294,7 @@ input, select {
   display: block;
   width: 100%;
   border: 1px solid #ebebeb;
-  padding: 11px 27px;
+  padding: 11px 24px;
   box-sizing: border-box;
   font-family: 'Montserrat';
   font-weight: 500;
@@ -374,6 +374,10 @@ label {
   color: black;
 }
 
+.text-insc:hover{
+  color: black;
+}
+
 .check {
   display: inline-block;
   position: absolute;
@@ -416,7 +420,10 @@ input[type=radio] {
     background: #ff6801; }
 
 .form-select {
-  position: relative; }
+  position: relative; 
+  border: none;
+  width: 100%;
+}
 
 select {
   appearance: none !important;
@@ -427,7 +434,8 @@ select {
   position: relative;
   background: 0 0;
   z-index: 10;
-  cursor: pointer; }
+  cursor: pointer; 
+}
 
 .select-icon {
   z-index: 0;
@@ -444,22 +452,25 @@ select {
   -moz-align-items: center;
   -webkit-align-items: center;
   -o-align-items: center;
-  -ms-align-items: center; }
-  .select-icon i {
-    justify-content: center;
-    -moz-justify-content: center;
-    -webkit-justify-content: center;
-    -o-justify-content: center;
-    -ms-justify-content: center;
-    align-items: center;
-    -moz-align-items: center;
-    -webkit-align-items: center;
-    -o-align-items: center;
-    -ms-align-items: center;
-    width: 40px;
-    height: 20px;
-    font-size: 18px;
-    color: #999; }
+  -ms-align-items: center; 
+}
+
+.select-icon i {
+  justify-content: center;
+  -moz-justify-content: center;
+  -webkit-justify-content: center;
+  -o-justify-content: center;
+  -ms-justify-content: center;
+  align-items: center;
+  -moz-align-items: center;
+  -webkit-align-items: center;
+  -o-align-items: center;
+  -ms-align-items: center;
+  width: 40px;
+  height: 20px;
+  font-size: 18px;
+  color: #999; 
+}
 
 .form-submit {
   text-align: right;
@@ -520,17 +531,21 @@ select {
     -webkit-flex-direction: column;
     -o-flex-direction: column;
     -ms-flex-direction: column;
-    margin: 0px; }
+    margin: 0px; 
+  }
 
   .form-row .form-group {
     width: 100%;
-    padding: 0px; }
+    padding: 0px; 
+  }
 
   .radio-label {
-    padding-right: 22px; }
+    padding-right: 22px; 
+  }
 
   .form-radio-item {
-    margin-right: 25px; } }
+    margin-right: 25px; } 
+  }
 @media screen and (max-width: 480px) {
   .form-radio {
     flex-direction: column;
@@ -540,10 +555,12 @@ select {
     -ms-flex-direction: column; }
 
   .submit {
-    width: 100%; }
+    width: 100%; 
+  }
 
   #reset {
     margin-right: 0px;
-    margin-bottom: 10px; } }
+    margin-bottom: 10px;
+  } 
+}
 
-/*# sourceMappingURL=style.css.map */
