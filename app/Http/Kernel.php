@@ -61,6 +61,7 @@
             'signed' => \App\Http\Middleware\ValidateSignature::class,
             'throttle' => \Illuminate\Routing\Middleware\ThrottleRequests::class,
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
+            'session_exist' => \App\Http\Middleware\SessionExist::class,
         ];
     }
 ?>
