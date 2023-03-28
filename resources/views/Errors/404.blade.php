@@ -19,9 +19,9 @@
                 <h2>Oops! Page introuvable</h2>
                 <p>Désolé mais la page que vous recherchez n'existe pas, elle a été supprimée. le nom a changé ou est temporairement indisponible.</p>
                 @if (Session::has('email'))
-                    <a href = "{{url('/dashboard')}}">retour à la page d'accueil</a>
+                    <a href = "{{url('/dashboard')}}">Retour à la page d'accueil</a>
                 @else
-                    <a href = "{{url('/dashboard')}}">retour à la page d'authentification</a>
+                    <a href = "{{url('/dashboard')}}">Retour à la page d'authentification</a>
                 @endif
             </div>
         </div>

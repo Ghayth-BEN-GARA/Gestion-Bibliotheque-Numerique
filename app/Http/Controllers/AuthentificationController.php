@@ -2,9 +2,11 @@
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\Auth;
     use Illuminate\Support\Facades\Mail;
     use App\Mail\EnvoyerMailSignupUser;
     use Hash;
+    use Session;
     use App\Models\Genre;
     use App\Models\Acteur;
     use App\Models\User;
@@ -46,9 +48,9 @@
                 return back()->with("erreur_email", "Nous sommes désolés ! Un autre compte est déjà créé avec cette adresse email.");
             }
 
-            elseif($this->creerNewUser($request->nom, $request->prenom, $request->naissance, $request->adresse, $request->cin, $request->genre, $request->role, $request->email, $request->password)){
+            elseif($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->adresse, $request->cin, $request->genre, $request->role, $request->email, $request->password)){
                 $this->creerJournalAuth("Inscription", "Créez un nouveau compte pour le bibliothécaire en ajoutant les informations nécessaires à l'inscription.", $this->getInformationsUser($request->email)->getIdUserAttribute());
-                $this->envoyerMailSignupUser($request->nom, $request->prenom, $request->email, $this->getInformationsUser($request->email)->getDateTimeCreationUserAttribute());
+                $this->envoyerMailSignupUser($request->nom, $request->prenom, $request->email);
                 return redirect("/")->with("success", "Nous sommes très heureux de vous informer que votre compte a été créé avec succès. Veuillez vous authentifier pour l'utiliser normalement.");
             }
         }
@@ -85,11 +87,10 @@
             return $journal->save();
         }
 
-        public function envoyerMailSignupUser($nom, $prenom, $email, $date_creation){
+        public function envoyerMailSignupUser($nom, $prenom, $email){
             $mailData = [
                 'email' => $email,
-                'fullname' => $prenom." ".$nom,
-                'date_creation' => $date_creation
+                'fullname' => $prenom." ".$nom
             ];
 
             return Mail::to($email)->send(new EnvoyerMailSignupUser($mailData));
@@ -97,6 +98,34 @@
 
         public function getInformationsUser($email){
             return User::where("email", "=", $email)->first();
+        }
+
+        public function gestionLoginUser(Request $request){
+            if(!$this->verifierIfUserExist($request->email)){
+                return back()->with("erreur_email", "Nous sommes désolés ! Nous n'avons pas trouvé votre compte.");
+            }
+
+            elseif(!$this->verifierEmailPasswordValide($request->email, $request->password)){
+                return back()->with("erreur_password", "Une erreur s'est produite lors de la tentative de connexion. Vérifier votre mot de passe et réessayer une autre fois.");
+            }
+
+            elseif($this->creerJournalAuth("Connexion", "Connectez-vous au système en entrant votre adresse e-mail et votre mot de passe.", $this->getInformationsUser($request->email)->getIdUserAttribute())){
+                $this->creerSessionUser($request->email);
+                return redirect("/dashboard");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas vous s'authentifier pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function verifierEmailPasswordValide($email, $password){
+            $credentials = request(['email', 'password']);
+            return Auth::attempt($credentials);
+        }
+
+        public function creerSessionUser($email){
+            Session::put('email', $email);
         }
     }
 ?>

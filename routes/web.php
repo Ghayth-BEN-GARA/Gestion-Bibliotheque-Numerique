@@ -1,6 +1,7 @@
 <?php
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\AuthentificationController;
+    use App\Http\Controllers\DashboardController;
 
     /*
     |--------------------------------------------------------------------------
@@ -15,4 +16,6 @@
     Route::get("/",[AuthentificationController::class,"ouvrirLogin"])->middleware("session_exist");
     Route::get("/signup",[AuthentificationController::class,"ouvrirSignup"])->middleware("session_exist");
     Route::post("/signup-user",[AuthentificationController::class,"gestionSignupUser"]);
+    Route::post("/login-user",[AuthentificationController::class,"gestionLoginUser"]);
+    Route::get("/dashboard",[DashboardController::class,"ouvrirDashboard"])->middleware("session_not_exist");
 ?>
