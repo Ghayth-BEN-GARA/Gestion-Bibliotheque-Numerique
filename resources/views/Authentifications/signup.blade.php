@@ -12,7 +12,7 @@
                         <img src = "{{asset('/auth_template/images/signup-img.jpg')}}" alt = "Image d'authentification">
                     </div>
                     <div class = "signup-form">
-                        <form method = "post" class = "register-form" id = "login-form" name = "login-form" action = "{{url('/signup-user')}}">
+                        <form method = "post" class = "register-form" id = "register-form" name = "register-form" action = "{{url('/signup-user')}}">
                             @csrf
                             <h2>Inscription</h2>
                             <div class = "form-row">
@@ -36,7 +36,10 @@
                                 </div>
                                 <div class = "form-group">
                                     <label for = "adresse">CIN :</label>
-                                    <input type = "number" name = "cin" id = "cin" placeholder = "Saisissez votre cin.." onKeyPress = "return event.charCode>=48 && event.charCode<=57" required/>
+                                    <input type = "number" name = "cin" id = "cin" placeholder = "Saisissez votre cin.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required/>
+                                    @if (session()->has('erreur_cin'))
+                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_cin')}}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class = "form-row">
@@ -57,6 +60,9 @@
                                             <i class = "zmdi zmdi-chevron-down"></i>
                                         </span>
                                     </div>
+                                    @if (session()->has('erreur_genre'))
+                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_genre')}}</p>
+                                    @endif
                                 </div>
                                 <div class = "form-group">
                                     <label for = "role">Rôle :</label>
@@ -75,12 +81,18 @@
                                             <i class = "zmdi zmdi-chevron-down"></i>
                                         </span>
                                     </div>
+                                    @if (session()->has('erreur_role'))
+                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_role')}}</p>
+                                    @endif
                                 </div>
                             </div>
                             <div class = "form-row">
                                 <div class = "form-group">
                                     <label for = "adresse">Adresse email :</label>
                                     <input type = "email" name = "email" id = "email" placeholder = "Saisissez votre email.." required/>
+                                    @if (session()->has('erreur_email'))
+                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_email')}}</p>
+                                    @endif
                                 </div>
                                 <div class = "form-group">
                                     <label for = "password">Mot de passe :</label>

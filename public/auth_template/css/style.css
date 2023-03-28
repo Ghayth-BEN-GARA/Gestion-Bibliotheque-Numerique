@@ -290,7 +290,7 @@ body {
   position: relative; 
 }
 
-input, select {
+input {
   display: block;
   width: 100%;
   border: 1px solid #ebebeb;
@@ -301,7 +301,18 @@ input, select {
   font-size: 13px; 
 }
 
-input:focus, select:focus {
+select{
+  display: block;
+  width: 100%;
+  border: none;
+  padding: 8px 24px;
+  box-sizing: border-box;
+  font-family: 'Montserrat';
+  font-weight: 500;
+  font-size: 13px; 
+}
+
+input:focus {
   border: 1px solid #29409A; 
 }
 
@@ -421,8 +432,8 @@ input[type=radio] {
 
 .form-select {
   position: relative; 
-  border: none;
   width: 100%;
+  border: 1px solid #ebebeb;
 }
 
 select {
