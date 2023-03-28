@@ -10,7 +10,8 @@
             $this->call([
                 ActeurSeeder::class,
                 GenreSeeder::class,
-                UserSeeder::class
+                UserSeeder::class,
+                JournalAuthSeeder::class
             ]);
         }
     }
