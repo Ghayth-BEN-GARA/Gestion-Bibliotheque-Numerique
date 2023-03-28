@@ -9,7 +9,8 @@
         public function run(): void{
             $this->call([
                 ActeurSeeder::class,
-                GenreSeeder::class
+                GenreSeeder::class,
+                UserSeeder::class
             ]);
         }
     }
