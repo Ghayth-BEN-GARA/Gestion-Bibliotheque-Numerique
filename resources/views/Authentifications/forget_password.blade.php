@@ -47,7 +47,7 @@
                                 <a href = "{{url('/')}}" class = "text">Pas besoin de cette récupération ?</a>
                             </div>
                             <div class = "form-submit">
-                                <input type = "submit" value = "Se Connecter" class = "submit" name = "submit" id = "submit" />
+                                <input type = "submit" value = "Envoyer le lien" class = "submit" name = "submit" id = "submit" />
                             </div>
                         </form>
                     </div>

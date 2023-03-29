@@ -150,5 +150,35 @@
         public function verifierIfTokenResetPasswordExist($id_user, $token){
             return LinkResetPassword::where("id_user", "=", $id_user)->where("token", "=", $token)->exists();
         }
+
+        public function gestionResetCompte(Request $request){
+            if($this->verifierIfAncienPasswordSaisie($request->id_user, $request->password)){
+                return back()->with("erreur_password", "Vous avez saisi votre ancien mot de passe.");
+            }
+
+            elseif($request->password != $request->repeate_password){
+                return back()->with("erreur_password", "Les deux mots de passe saisis ne sont pas identiques.")->with("erreur_repeat_password", "Les deux mots de passe saisis ne sont pas identiques.");
+            }
+
+            elseif($this->updatePasswordUser($request->id_user, $request->password)){
+                $this->creerJournalAuth("Réinitialisation du mot de passe", "Récupérez votre compte en suivant le processus de réinitialisation du mot de passe.", $request->id_user);
+                return redirect('/')->with('success', 'Nous sommes très heureux de vous informer que votre mot de passe a a été réinitialisé avec succès. Connectez-vous maintenant avec vos nouveaux paramétres de connexion.');
+            }
+        }
+
+        public function verifierIfAncienPasswordSaisie($id_user, $password){
+            $credentials = [
+                'id_user' => $id_user,
+                'password' => $password
+            ];
+
+            return Auth::attempt($credentials);
+        }
+
+        public function updatePasswordUser($id_user, $password){
+            return User::where("id_user", "=", $id_user)->update([
+                "password" => Hash::make($password)
+            ]);
+        }
     }
 ?>

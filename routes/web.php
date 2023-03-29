@@ -19,4 +19,5 @@
     Route::get("/forget-password",[AuthentificationController::class,"ouvrirForgetPassword"])->middleware("session_exist");
     Route::post("/send-link-reset-compte",[AuthentificationController::class,"gestionEnvoyerLienForgetPassword"]);
     Route::get("/reset-password",[AuthentificationController::class,"ouvrirResetPassword"])->middleware("session_exist");
+    Route::post("/reset-compte",[AuthentificationController::class,"gestionResetCompte"]);
 ?>
