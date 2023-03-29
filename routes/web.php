@@ -3,6 +3,7 @@
     use App\Http\Controllers\AuthentificationController;
     use App\Http\Controllers\DashboardController;
     use App\Http\Controllers\ProfilController;
+    use App\Http\Controllers\JournalController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -24,4 +25,5 @@
     Route::get("/404",[DashboardController::class,"ouvrir404"]);
     Route::get("/update-type-mode",[DashboardController::class,"modifierTypeMode"]);
     Route::get("/update-status-user",[ProfilController::class,"modifierStatusUser"]);
+    Route::get("/journal",[JournalController::class,"ouvrirJournal"])->middleware("session_not_exist");
 ?>

@@ -24,7 +24,6 @@
             "genre",
             "role",
             "mobile",
-            "lieu_naissance",
             "adresse",
             "cin",
             "email",
@@ -84,14 +83,6 @@
 
         public function setMobileUserAttribute($value){
             $this->attributes["mobile"] = $value;
-        }
-
-        public function getLieuNaissanceUserAttribute(){
-            return $this->attributes["lieu_naissance"];
-        }
-
-        public function setLieuNaissanceUserAttribute($value){
-            $this->attributes["lieu_naissance"] = $value;
         }
 
         public function getAdresseUserAttribute(){

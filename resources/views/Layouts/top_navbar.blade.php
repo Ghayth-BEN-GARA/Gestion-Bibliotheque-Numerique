@@ -82,7 +82,7 @@
                     <i class = "mdi mdi-account-circle me-1"></i>
                     <span>Profil</span>
                 </a>
-                <a href = "#" class = "dropdown-item notify-item">
+                <a href = "{{url('/journal')}}" class = "dropdown-item notify-item">
                     <i class = "mdi mdi-format-list-bulleted me-1"></i>
                     <span>Journal d'authentification</span>
                 </a>

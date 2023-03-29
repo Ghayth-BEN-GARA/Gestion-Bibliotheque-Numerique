@@ -17,7 +17,6 @@
             $user1->setGenreUserAttribute("Non spécifié");
             $user1->setRoleUserAttribute("Bibliothécaire");
             $user1->setMobileUserAttribute(12345678);
-            $user1->setLieuNaissanceUserAttribute("Sfax");
             $user1->setAdresseUserAttribute("Sfax");
             $user1->setCinUserAttribute(10000000);
             $user1->setEmailUserAttribute("biblio@gmail.com");

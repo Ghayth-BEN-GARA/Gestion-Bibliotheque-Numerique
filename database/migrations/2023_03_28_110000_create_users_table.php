@@ -18,7 +18,6 @@
                 $table->string('genre', 200)->default("Non spécifié");
                 $table->string('role', 90)->default("Étudiant");
                 $table->integer("mobile")->default(0);
-                $table->string('lieu_naissance', 900)->default("Aucun");
                 $table->string('adresse', 999)->default("Aucun");
                 $table->integer("cin")->default(0);
                 $table->string('email')->unique();
