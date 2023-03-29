@@ -104,4 +104,5 @@
     <button class = "button-menu-mobile open-left">
         <i class = "mdi mdi-menu"></i>
     </button>
+    @livewire("liste-users-search-livewire")
 </div>
