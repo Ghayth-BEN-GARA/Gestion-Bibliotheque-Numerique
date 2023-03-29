@@ -86,9 +86,9 @@
                     <i class = "mdi mdi-format-list-bulleted me-1"></i>
                     <span>Journal d'authentification</span>
                 </a>
-                <a href = "javascript:void(0)" class = "dropdown-item notify-item">
+                <a href = "javascript:void(0)" class = "dropdown-item notify-item end-bar-toggle">
                     <i class = "mdi mdi-cog me-1"></i>
-                    <span>Paramétres</span>
+                    <span>Paramètres</span>
                 </a>
                 <a href = "javascript:void(0)" class = "dropdown-item notify-item">
                     <i class="mdi mdi-lifebuoy me-1"></i>

@@ -2,7 +2,7 @@
     use Illuminate\Support\Facades\Route;
     use App\Http\Controllers\AuthentificationController;
     use App\Http\Controllers\DashboardController;
-
+    use App\Http\Controllers\ProfilController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -22,4 +22,6 @@
     Route::post("/reset-compte",[AuthentificationController::class,"gestionResetCompte"]);
     Route::get("/logout",[AuthentificationController::class,"gestionLogout"]);
     Route::get("/404",[DashboardController::class,"ouvrir404"]);
+    Route::get("/update-type-mode",[DashboardController::class,"modifierTypeMode"]);
+    Route::get("/update-status-user",[ProfilController::class,"modifierStatusUser"]);
 ?>

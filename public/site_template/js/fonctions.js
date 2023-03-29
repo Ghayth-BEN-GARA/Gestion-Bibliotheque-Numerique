@@ -39,3 +39,53 @@ async function chargement(message) {
         }
     })
 }
+
+function modifierTypeMode() {
+    var type_mode = null;
+
+    if($("#dark-mode-check").is(":checked")){
+        type_mode = "Dark";
+    }
+
+    else{
+        type_mode = "Light";
+    }
+
+    modifierTypeModelRequest(type_mode);
+}
+
+function modifierTypeModelRequest(type) {
+    $.ajax({
+        url: '/update-type-mode',
+        type: "get",
+        cache: true,
+        data: { 
+            mode: type
+        }
+    })
+}
+
+function modifierStatusUser() {
+    var status = null;
+
+    if($("#status_compte_active").is(":checked")){
+        status = 1;
+    }
+
+    else{
+        status = 0;
+    }
+
+    modifierStatusUserRequest(status);
+}
+
+function modifierStatusUserRequest(status) {
+    $.ajax({
+        url: '/update-status-user',
+        type: "get",
+        cache: true,
+        data: { 
+            status: status
+        }
+    })
+}
