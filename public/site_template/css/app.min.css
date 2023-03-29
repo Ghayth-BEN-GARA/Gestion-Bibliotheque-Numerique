@@ -196,11 +196,12 @@ sup {
     top: -0.5em;
 }
 a {
-    color: #727cf5;
+    color: #29409A;
     text-decoration: none;
 }
 a:hover {
-    color: #6169d0;
+    color: #29409A;
+    opacity: 0.8;
 }
 a:not([href]):not([class]),
 a:not([href]):not([class]):hover {
@@ -4967,8 +4968,8 @@ fieldset:disabled .btn {
 .page-item.active .page-link {
     z-index: 3;
     color: #fff;
-    background-color: #727cf5;
-    border-color: #727cf5;
+    background-color: #29409A;
+    border-color: #29409A;
 }
 .page-item.disabled .page-link {
     color: #98a6ad;

@@ -89,3 +89,32 @@ function modifierStatusUserRequest(status) {
         }
     })
 }
+
+function questionSupprimerJournalAuthentification() {
+    swal({
+        title: "Journal d'authentification",
+        text: "Vous êtes sûr de supprimer votre journal d'authentification ?",
+        type: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+        showCloseButton: true,
+        allowOutsideClick: false,
+        confirmButtonColor: '#29409A',
+        confirmButtonText: 'Oui, Je suis sûr !',
+        cancelButtonText: 'Annuler',
+        padding: "2em",
+        width: "515px",
+    })
+
+    .then((result) => {
+        if (result.value) {
+            chargement("Suppression en cours..").then(
+                location.href = "/delete-journal-authentfication"
+            );
+        }
+
+        else if (result.dismiss === swal.DismissReason.cancel) {
+            swal.close();
+        }
+    });
+}

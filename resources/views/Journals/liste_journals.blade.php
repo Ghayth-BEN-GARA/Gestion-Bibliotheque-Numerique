@@ -32,7 +32,7 @@
                                     <div class = "card-body">
                                         <h4 class = "header-title">Journal d'authentification</h4>
                                         <p class = "text-muted font-14">
-                                            Le journal d'authentification est un espace qui vous permet de voir les actions d'authentification créées par votre compte. Si vous le souhaitez, vous pouvez effacer votre journal d'authentification en cliquant sur <b class = "text-decoration-underline text-danger" onclick = "questionSupprimerJournalAuthentification()">Vider le journal</b>.
+                                            Le journal d'authentification est un espace qui vous permet de voir les actions d'authentification créées par votre compte. Si vous le souhaitez, vous pouvez effacer votre journal d'authentification en cliquant sur <b class = "text-decoration-underline text-danger" style = "cursor:pointer" onclick = "questionSupprimerJournalAuthentification()">Vider le journal</b>.
                                         </p>
                                         @if(Session()->has("erreur"))
                                             <div class = "alert alert-danger d-flex alert-dismissible fade show mt-1" role = "alert">
