@@ -11,5 +11,9 @@
         public static function getTypeModeCompteUser(){
             return TypeMode::where("id_user", "=", auth()->user()->getIdUserAttribute())->first();
         }
+
+        public function ouvrir404(){
+            return view("Errors.404");
+        }
     }
 ?>

@@ -180,5 +180,31 @@
                 "password" => Hash::make($password)
             ]);
         }
+
+        public function gestionLogout(){
+            if($this->creerJournalAuth("Déconnexion", "Femer la session utilisateur et sortie de l'application.", auth()->user()->getIdUserAttribute())){
+                if($this->logoutUser()){
+                    return redirect("/");
+                }
+
+                else{
+                    return redirect("/404");
+                }
+            }
+        }
+
+        public function logoutUser(){
+            Session::forget('email');
+            Session::flush();
+            auth()->logout();
+
+            if (!Session::has('email')){
+                return true;
+            }
+
+            else{
+                return false;
+            }
+        }
     }
 ?>
