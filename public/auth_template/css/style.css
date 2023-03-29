@@ -373,6 +373,16 @@ label {
   clear: both;
 }
 
+.text{
+  font-weight: 500;
+  font-size: 13px;
+  position: relative;
+  z-index: 9;
+  display: block;
+  cursor: pointer; 
+  color: black;
+}
+
 .text-insc{
   font-weight: 500;
   font-size: 13px;
@@ -385,7 +395,7 @@ label {
   color: black;
 }
 
-.text-insc:hover{
+.text-insc:hover, .text:hover{
   color: black;
 }
 
@@ -404,31 +414,39 @@ label {
   left: 0px;
   z-index: 5;
   transition: border .25s linear;
-  -webkit-transition: border .25s linear; }
-  .check:before {
-    position: absolute;
-    display: block;
-    content: '';
-    width: 9px;
-    height: 9px;
-    border-radius: 50%;
-    -moz-border-radius: 50%;
-    -webkit-border-radius: 50%;
-    -o-border-radius: 50%;
-    -ms-border-radius: 50%;
-    top: 2px;
-    left: 2px;
-    margin: auto;
-    transition: background 0.25s linear;
-    -webkit-transition: background 0.25s linear; }
+  -webkit-transition: border .25s linear; 
+}
+
+.check:before {
+  position: absolute;
+  display: block;
+  content: '';
+  width: 9px;
+  height: 9px;
+  border-radius: 50%;
+  -moz-border-radius: 50%;
+  -webkit-border-radius: 50%;
+  -o-border-radius: 50%;
+  -ms-border-radius: 50%;
+  top: 2px;
+  left: 2px;
+  margin: auto;
+  transition: background 0.25s linear;
+  -webkit-transition: background 0.25s linear; 
+}
 
 input[type=radio] {
   position: absolute;
-  visibility: hidden; }
-  input[type=radio]:checked ~ .check {
-    border: 1px solid #ff6801; }
-  input[type=radio]:checked ~ .check::before {
-    background: #ff6801; }
+  visibility: hidden;
+}
+
+input[type=radio]:checked ~ .check {
+  border: 1px solid #29409A;
+}
+
+input[type=radio]:checked ~ .check::before {
+  background: #29409A; 
+}
 
 .form-select {
   position: relative; 
@@ -485,7 +503,7 @@ select {
 
 .form-submit {
   text-align: right;
-  padding-top: 27px; 
+  padding-top: 1px; 
 }
 
 .submit {

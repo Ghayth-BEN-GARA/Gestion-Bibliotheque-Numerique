@@ -21,7 +21,7 @@
                 @if (Session::has('email'))
                     <a href = "{{url('/dashboard')}}">Retour à la page d'accueil</a>
                 @else
-                    <a href = "{{url('/dashboard')}}">Retour à la page d'authentification</a>
+                    <a href = "{{url('/')}}">Retour à la page d'authentification</a>
                 @endif
             </div>
         </div>
