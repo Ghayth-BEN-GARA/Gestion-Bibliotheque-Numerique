@@ -8,3 +8,4 @@
 <link rel = "stylesheet" href = "{{asset('/site_template/css/app.min.css')}}" id = "light-style">
 <link rel = "stylesheet" href = "{{asset('/site_template/css/app-dark.min.css')}}" id = "dark-style">
 <link rel = "stylesheet" href = "{{asset('/site_template/css/sweetalert2.css')}}">
+@livewireStyles
