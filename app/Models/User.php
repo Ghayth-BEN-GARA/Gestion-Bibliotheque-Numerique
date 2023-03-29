@@ -161,5 +161,9 @@
         public function getFormattedMobileUserAttribute(){
             return substr($this->getMobileUserAttribute(), 0, 2)." ".substr($this->getMobileUserAttribute(), 2, 3)." ".substr($this->getMobileUserAttribute(), 5, 3);
         }
+
+        public function getFullnameUserAttribute(){
+            return $this->getPrenomUserAttribute()." ".$this->getNomUserAttribute();
+        }
     }
 ?>
