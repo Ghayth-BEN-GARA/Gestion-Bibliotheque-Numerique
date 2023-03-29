@@ -11,7 +11,8 @@
                 ActeurSeeder::class,
                 GenreSeeder::class,
                 UserSeeder::class,
-                JournalAuthSeeder::class
+                JournalAuthSeeder::class,
+                TypeModeSeeder::class
             ]);
         }
     }

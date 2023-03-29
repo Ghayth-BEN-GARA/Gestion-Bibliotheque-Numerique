@@ -30,6 +30,7 @@
             "email",
             "password",
             "image",
+            "status",
             "date_time_creation_user"
         ];
 
@@ -131,6 +132,14 @@
 
         public function setImageUserAttribute($value){
             $this->attributes["image"] = $value;
+        }
+
+        public function getStatusUserAttribute(){
+            return $this->attributes["status"];
+        }
+
+        public function setStatusUserAttribute($value){
+            $this->attributes["status"] = $value;
         }
 
         public function getDateTimeCreationUserAttribute(){

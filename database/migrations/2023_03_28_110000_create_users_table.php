@@ -24,6 +24,7 @@
                 $table->string('email')->unique();
                 $table->string('password', 999)->default("Aucun");
                 $table->string("image", 999)->default("images_profils/user.png");
+                $table->boolean('status')->default(true);
                 $table->datetime("date_time_creation_user")->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
                 $table->foreign("genre")->references("sexe")->on("genres")->onDelete("cascade")->onUpdate("cascade");
                 $table->foreign("role")->references("nom_acteur")->on("acteurs")->onDelete("cascade")->onUpdate("cascade");
