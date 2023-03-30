@@ -12,7 +12,8 @@
                 GenreSeeder::class,
                 UserSeeder::class,
                 JournalAuthSeeder::class,
-                TypeModeSeeder::class
+                TypeModeSeeder::class,
+                ReseauSocialSeeder::class
             ]);
         }
     }
