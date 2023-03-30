@@ -2,9 +2,11 @@
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
     use Illuminate\Support\Str;
+    use Illuminate\Support\Facades\Auth;
     use App\Models\User;
     use App\Models\ReseauSocial;
     use Session;
+    use Hash;
 
     class ProfilController extends Controller{
         public function modifierStatusUser(Request $request){
@@ -141,6 +143,59 @@
                 "link_instagram" => $instagram,
                 "link_github" => $github,
                 "link_linkedin" => $linkedin
+            ]);
+        }
+
+        public function gestionModifierEmail(Request $request){
+            if($this->modifierEmail(auth()->user()->getIdUserAttribute(), $request->email)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que l'adresse email a été modifiée avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier l'adresse email pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierEmail($id_user, $email){
+            return User::where("id_user", "=", $id_user)->update([
+                "email" => $email
+            ]);
+        }
+
+        public function gestionModifierPassword(Request $request){
+            if($this->verifierEgalitePassword($request->password, $request->confirm_password)){
+                return back()->with("erreur", "Les deux mots de passe saisis ne sont pas identiques.");
+            }
+
+            else if($this->verifierAncienPasswordSaisie(auth()->user()->getEmailUserAttribute(), $request->password)){
+                return back()->with("erreur", "Vous avez saisi votre ancien mot de passe.");
+            }
+
+            else if($this->modifierPassword(auth()->user()->getIdUserAttribute(), $request->password)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que votre mot de passe a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier votre mot de passe pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function verifierEgalitePassword($new_password, $confirm_password){
+            return strcmp($new_password, $confirm_password);
+        }
+
+        public function verifierAncienPasswordSaisie($email, $password){
+            $credentials = [
+                'email' => $email,
+                'password' => $password
+            ];
+
+            return Auth::attempt($credentials);
+        }
+
+        public function modifierPassword($id_user, $password){
+            return User::where("id_user", "=", $id_user)->update([
+                "password" => bcrypt($password)
             ]);
         }
     }

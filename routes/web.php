@@ -36,4 +36,6 @@
     Route::post("/modifier-photo-profil",[ProfilController::class,"gestionModifierPhotoDeProfil"]);
     Route::post("/modifier-informations-basic",[ProfilController::class,"gestionModifierInformationsBasique"]);
     Route::post("/modifier-reseaux-sociaux",[ProfilController::class,"gestionModifierReseauxSociaux"]);
+    Route::post("/modifier-email",[ProfilController::class,"gestionModifierEmail"]);
+    Route::post("/modifier-password",[ProfilController::class,"gestionModifierPassword"]);
 ?>
