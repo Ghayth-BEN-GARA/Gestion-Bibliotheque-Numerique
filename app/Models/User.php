@@ -156,5 +156,9 @@
         public function getFullnameUserAttribute(){
             return $this->getPrenomUserAttribute()." ".$this->getNomUserAttribute();
         }
+
+        public function getFormattedCinUserAttribute(){
+            return substr($this->getCinUserAttribute(), 0, 3)." ".substr($this->getCinUserAttribute(), 3, 3)." ".substr($this->getCinUserAttribute(), 6, 2);
+        }
     }
 ?>

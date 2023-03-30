@@ -34,4 +34,5 @@
     Route::get("/profil",[ProfilController::class,"ouvrirProfil"])->middleware("session_not_exist");
     Route::get("/edit-photo-profil",[ProfilController::class,"ouvrirEditPhotoProfil"])->middleware("session_not_exist");
     Route::post("/modifier-photo-profil",[ProfilController::class,"gestionModifierPhotoDeProfil"]);
+    Route::post("/modifier-informations-basic",[ProfilController::class,"gestionModifierInformationsBasique"]);
 ?>

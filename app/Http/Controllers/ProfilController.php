@@ -1,7 +1,9 @@
 <?php
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Str;
     use App\Models\User;
+    use App\Models\ReseauSocial;
     use Session;
 
     class ProfilController extends Controller{
@@ -46,7 +48,8 @@
         }
 
         public function ouvrirProfil(){
-            return view("Profils.profil");
+            $links_reseaux_sociaux = $this->getLinksReseauxSociaux(auth()->user()->getIdUserAttribute());
+            return view("Profils.profil", compact("links_reseaux_sociaux"));
         }
 
         public function ouvrirEditPhotoProfil(){
@@ -69,6 +72,56 @@
 
             return User::where('id_user', '=', $id_user)->update([
                 'image' => $path
+            ]);
+        }
+
+        public function getLinksReseauxSociaux($id_user){
+            return ReseauSocial::where("id_user", "=", $id_user)->first();
+        }
+
+        public function gestionModifierInformationsBasique(Request $request){
+            if(!$this->verifierNumeroMobileLength($request->numero)){
+                return back()->with("erreur", "Votre numéro mobile doit être composé de 8 chiffres.");
+            }
+
+            else if($this->verifierSiNumeroMobileExist(auth()->user()->getEmailUserAttribute(), $request->numero)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de mobile est utilisé par un autre utilisateur.");
+            }
+
+            else if($this->verifierSiCinExist(auth()->user()->getEmailUserAttribute(), $request->cin)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de carte d'identité est utilisé par un autre utilisateur.");
+            }
+
+            else if($this->modifierInformationsBasique($request->email, $request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vos informations ont été modifiées avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier vos informations pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function verifierNumeroMobileLength($numero){
+            return Str::length($numero) == 8;
+        }
+
+        public function verifierSiNumeroMobileExist($email, $numero){
+            return User::where("email", "<>", $email)->where("mobile", "=", $numero)->exists();
+        }
+
+        public function verifierSiCinExist($email, $cin){
+            return User::where("email", "<>", $email)->where("cin", "=", $cin)->exists();
+        }
+
+        public function modifierInformationsBasique($email, $nom, $prenom, $date_naissance, $genre, $numero, $adresse, $cin){
+            return User::where("email", "=", $email)->update([
+                "nom" => $nom,
+                "prenom" => $prenom,
+                "date_naissance" => $date_naissance,
+                "genre" => $genre,
+                "mobile" => $numero,
+                "adresse" => $adresse,
+                "cin" => $cin
             ]);
         }
     }
