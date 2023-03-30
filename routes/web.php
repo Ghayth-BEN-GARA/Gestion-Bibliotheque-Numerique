@@ -30,4 +30,5 @@
     Route::get("/help",[DashboardController::class,"ouvrirAide"])->middleware("session_not_exist");
     Route::get("/contact",[DashboardController::class,"ouvrirContact"])->middleware("session_not_exist");
     Route::get("/delete-compte",[ProfilController::class,"gestionSupprimerCompte"]);
+    Route::post("/send-mail-contact",[DashboardController::class,"gestionEnvoyerMailContact"]);
 ?>
