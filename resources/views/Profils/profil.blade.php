@@ -338,6 +338,68 @@
                                                         </div>
                                                     </div>
                                                 </form>
+                                                <hr>
+                                                <h5 class = "mb-3 mt-3 text-uppercase bg-light p-2">
+                                                    <i class = "mdi mdi-earth me-1"></i> 
+                                                    Réseaux sociaux
+                                                </h5>
+                                                <form name = "f-form-modifier-reseaux-sociaux" id  = "f-form-modifier-reseaux-sociaux" method = "post" action = "{{url('/modifier-reseaux-sociaux')}}">
+                                                    @csrf
+                                                    <div class = "row">
+                                                        <div class = "col-md-6">
+                                                            <div class = "mb-3">
+                                                                <label for = "facebook" class = "form-label">Facebook</label>
+                                                                <div class = "input-group">
+                                                                    <span class = "input-group-text">
+                                                                        <i class = "mdi mdi-facebook"></i></span>
+                                                                        <input type = "url" class = "form-control" id = "facebook" name = "facebook" placeholder = "Saisissez le lien.." value = "{{$links_reseaux_sociaux->getLinkFacebookAttribute()}}" required>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-md-6">
+                                                            <div class = "mb-3">
+                                                                <label for = "instagram" class = "form-label">Instagram</label>
+                                                                <div class = "input-group">
+                                                                    <span class = "input-group-text">
+                                                                        <i class = "mdi mdi-instagram"></i></span>
+                                                                        <input type = "url" class = "form-control" id = "instagram" name = "instagram" placeholder = "Saisissez le lien.." value = "{{$links_reseaux_sociaux->getLinkInstagramAttribute()}}" required>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "row mt-3">
+                                                        <div class = "col-md-6">
+                                                            <div class = "mb-3">
+                                                                <label for = "linkedin" class = "form-label">Linkedin</label>
+                                                                <div class = "input-group">
+                                                                    <span class = "input-group-text">
+                                                                        <i class = "mdi mdi-linkedin"></i></span>
+                                                                        <input type = "url" class = "form-control" id = "linkedin" name = "linkedin" placeholder = "Saisissez le lien.." value = "{{$links_reseaux_sociaux->getLinkLinkedinAttribute()}}" required>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "col-md-6">
+                                                            <div class = "mb-3">
+                                                                <label for = "github" class = "form-label">Github</label>
+                                                                <div class = "input-group">
+                                                                    <span class = "input-group-text">
+                                                                        <i class = "mdi mdi-github"></i></span>
+                                                                        <input type = "url" class = "form-control" id = "github" name = "github" placeholder = "Saisissez le lien.." value = "{{$links_reseaux_sociaux->getLinkGithubAttribute()}}" required>
+                                                                    </span>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "row mt-3">
+                                                        <div class = "col-sm-6"></div>
+                                                        <div class = "col-sm-6 text-end">
+                                                            <button type = "submit" class = "btn btn-primary">Modifier</button>
+                                                        </div>
+                                                    </div>
+                                                </form>
                                             </div>
                                         </div>
                                     </div>

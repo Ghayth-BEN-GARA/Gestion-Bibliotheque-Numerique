@@ -124,5 +124,24 @@
                 "cin" => $cin
             ]);
         }
+
+        public function gestionModifierReseauxSociaux(Request $request){
+            if($this->modifierReseauxSociaux(auth()->user()->getIdUserAttribute(), $request->facebook, $request->instagram, $request->github, $request->linkedin)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que les liens des réseaux sociaux ont été modifiées avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier les liens des réseaux sociaux pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierReseauxSociaux($id_user, $facebook, $instagram, $github, $linkedin){
+            return ReseauSocial::where("id_user", "=", $id_user)->update([
+                "link_facebook" => $facebook,
+                "link_instagram" => $instagram,
+                "link_github" => $github,
+                "link_linkedin" => $linkedin
+            ]);
+        }
     }
 ?>
