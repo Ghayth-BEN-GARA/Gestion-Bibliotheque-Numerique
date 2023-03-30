@@ -23,7 +23,7 @@
                     <i class = "uil-notes font-16 me-1"></i>
                     <span>Dashboard</span>
                 </a>
-                <a href = "javascript:void(0);" class = "dropdown-item notify-item">
+                <a href = "{{url('/help')}}" class = "dropdown-item notify-item">
                     <i class = "uil-life-ring font-16 me-1"></i>
                     <span>Aide</span>
                 </a>

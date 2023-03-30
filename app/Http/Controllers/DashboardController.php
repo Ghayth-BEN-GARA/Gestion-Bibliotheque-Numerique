@@ -21,5 +21,9 @@
                 "type_mode" => $request->mode
             ]);
         }
+
+        public function ouvrirAide(){
+            return view("Autres.help");
+        }
     }
 ?>

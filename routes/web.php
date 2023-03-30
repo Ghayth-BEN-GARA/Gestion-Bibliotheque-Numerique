@@ -27,4 +27,5 @@
     Route::get("/update-status-user",[ProfilController::class,"modifierStatusUser"]);
     Route::get("/journal",[JournalController::class,"ouvrirJournal"])->middleware("session_not_exist");
     Route::get("/delete-journal-authentfication",[JournalController::class,"gestionSupprimerJournal"]);
+    Route::get("/help",[DashboardController::class,"ouvrirAide"])->middleware("session_not_exist");
 ?>
