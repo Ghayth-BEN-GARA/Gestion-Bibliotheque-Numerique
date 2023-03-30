@@ -154,7 +154,7 @@
                                                     <div id = "collapseFive" class = "collapse" aria-labelledby = "headingFive" data-bs-parent = "#custom-accordion-one">
                                                         <div class = "card-body">
                                                             Pour contacter l'IPSAS vous pouvez :<br>
-                                                            • Naviguer sur note site web <strong><a href = "https://ipsas-ens.net/">IPSAS</a></strong><br>
+                                                            • Naviguer sur note site web <strong><a href = "https://ipsas-ens.net/" target = "_blank">IPSAS</a></strong><br>
                                                             • Envoyez-nous un e-mail sur <strong>contact@ipsas.ens.net</strong><br>
                                                             • Appelez le numéro <strong> (+ 216) 74 225 665</strong> ou <strong> 39 185 855</strong>
                                                             • Placer-vous à l'adresse <strong>Avenue 5 Août Rue Saîd Aboubaker 3002 Sfax-Tunisie. </strong><br>

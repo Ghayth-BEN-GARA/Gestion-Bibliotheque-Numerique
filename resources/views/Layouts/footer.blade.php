@@ -8,7 +8,7 @@
                 <div class = "text-md-end footer-links d-none d-md-block">
                     <a href = "{{url('/help')}}">Aide</a>
                     <a href = "https://ipsas-ens.net/">Site</a>
-                    <a href = "javascript: void(0);">Contactez nous</a>
+                    <a href = "{{url('/contact')}}">Contactez nous</a>
                 </div>
             </div>
         </div>

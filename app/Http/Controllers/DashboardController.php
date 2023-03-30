@@ -25,5 +25,9 @@
         public function ouvrirAide(){
             return view("Autres.help");
         }
+
+        public function ouvrirContact(){
+            return view("Autres.contact");
+        }
     }
 ?>

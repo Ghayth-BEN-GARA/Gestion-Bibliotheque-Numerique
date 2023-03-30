@@ -62,7 +62,7 @@
                     <button class = "btn btn-primary" id = "deleteBtn" disabled>Supprimer votre compte</button>
                     <span class = "font-13 text-danger mt-2">Vous n'êtes pas autorisé à utiliser cette fonctionnalité.</span>
                 @else
-                    <button class = "btn btn-primary" id = "deleteBtn">Supprimer votre compte</button>
+                    <button class = "btn btn-primary" id = "deleteBtn" onclick = "questionSupprimerCompte()">Supprimer votre compte</button>
                 @endif
             </div>
         </div>
