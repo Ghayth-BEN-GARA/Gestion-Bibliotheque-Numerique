@@ -44,5 +44,32 @@
                 return false;
             }
         }
+
+        public function ouvrirProfil(){
+            return view("Profils.profil");
+        }
+
+        public function ouvrirEditPhotoProfil(){
+            return view("Profils.edit_photo_profil");
+        }
+
+        public function gestionModifierPhotoDeProfil(Request $request){
+            if($this->modifierPhotoDeProfil(auth()->user()->getIdUserAttribute(), $request)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que votre photo de profil a a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier votre photo de profil pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierPhotoDeProfil($id_user, $request){
+            $filename = time().$request->file('file')->getClientOriginalName();
+            $path = $request->file->move('images_profils/'.$id_user, $filename);
+
+            return User::where('id_user', '=', $id_user)->update([
+                'image' => $path
+            ]);
+        }
     }
 ?>

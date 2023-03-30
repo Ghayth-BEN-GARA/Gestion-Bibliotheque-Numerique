@@ -27,7 +27,7 @@
                     <i class = "uil-life-ring font-16 me-1"></i>
                     <span>Aide</span>
                 </a>
-                <a href = "javascript:void(0);" class = "dropdown-item notify-item">
+                <a href = "{{url('/profil')}}" class = "dropdown-item notify-item">
                     <i class = "uil-user font-16 me-1"></i>
                     <span>Profil</span>
                 </a>

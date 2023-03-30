@@ -78,7 +78,7 @@
                 <div class = " dropdown-header noti-title">
                     <h6 class="text-overflow m-0">Bienvenu !</h6>
                 </div>
-                <a href = "#" class = "dropdown-item notify-item">
+                <a href = "{{url('/profil')}}" class = "dropdown-item notify-item">
                     <i class = "mdi mdi-account-circle me-1"></i>
                     <span>Profil</span>
                 </a>
