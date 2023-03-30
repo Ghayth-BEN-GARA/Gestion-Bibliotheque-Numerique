@@ -33,7 +33,7 @@
                                         <img src = "{{URL::asset(auth()->user()->getImageUserAttribute())}}" class = "rounded-circle avatar-lg img-thumbnail" alt = "Photo de profil">
                                         <h4 class = "mb-0 mt-2">{{auth()->user()->getFullnameUserAttribute()}}</h4>
                                         <p class = "text-muted font-14">{{auth()->user()->getRoleUserAttribute()}}</p>
-                                        <a href = "{{url('/edit-photo-profil')}}" class = "btn btn-success btn-sm mb-2">Modifier la photo de profil</a>
+                                        <a href = "{{url('/edit-photo-profil')}}" class = "btn btn-primary btn-sm mb-2">Modifier la photo de profil</a>
                                         <div class = "text-start mt-3">
                                             <h4 class = "font-13 text-uppercase">À propos de mois :</h4>
                                             <p class = "text-muted font-13 mb-3">
