@@ -6,6 +6,7 @@
     use App\Models\User;
     use App\Models\ReseauSocial;
     use App\Models\Etudiant;
+    use App\Models\Enseignant;
     use Session;
     use Hash;
 
@@ -226,6 +227,27 @@
             return Etudiant::where("id_user", "=", $id_user)->update([
                 "niveau" => $niveau,
                 "matricule" => $matricule
+            ]);
+        }
+
+        public static function getInformationsEnseignants($id_user){
+            return Enseignant::where("id_user", "=", $id_user)->first();
+        }
+
+        public function gestionModifierEnseignant(Request $request){
+            if($this->modifierEnseignant($request->grade, $request->specialite, auth()->user()->getIdUserAttribute())){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vos informations a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier vos informations. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierEnseignant($grade, $specialite, $id_user){
+            return Enseignant::where("id_user", "=", $id_user)->update([
+                "grade" => $grade,
+                "specialite" => $specialite
             ]);
         }
     }

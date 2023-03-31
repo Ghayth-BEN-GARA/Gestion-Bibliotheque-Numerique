@@ -242,6 +242,29 @@
                                                             </span>
                                                         </div>
                                                     </div>
+                                                @elseif(auth()->user()->getRoleUserAttribute() == "Enseignant")
+                                                    <div class = "row col-md-12 mb-3">
+                                                        <div class = "col-md-6">
+                                                            <span>
+                                                                <i class = "mdi mdi-graph me-1"></i>
+                                                                <b class = "text-capitalize">Grade :</b>
+                                                            </span>
+                                                            <br>
+                                                            <span class = "mx-1 text-capitalize">
+                                                                {{App\Http\Controllers\ProfilController::getInformationsEnseignants(auth()->user()->getIdUserAttribute())->getGradeAttribute()}}
+                                                            </span>
+                                                        </div>
+                                                        <div class = "col-md-6 text-end">
+                                                            <span>
+                                                                <i class = "mdi mdi-book-education me-1"></i>
+                                                                <b class = "text-capitalize">Spécialité :</b>
+                                                            </span>
+                                                            <br>
+                                                            <span class = "mx-1 text-capitalize">
+                                                                {{App\Http\Controllers\ProfilController::getInformationsEnseignants(auth()->user()->getIdUserAttribute())->getSpecialiteAttribute()}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
                                                 @endif
                                                 <div class = "row col-md-12 mb-3">
                                                     <div class = "col-md-6">
@@ -442,6 +465,34 @@
                                                                 <div class = "mb-3">
                                                                     <label for = "matricule" class = "form-label">Matricule</label>
                                                                     <input type = "text" class = "form-control" id = "matricule" name = "matricule" placeholder = "Saisissez votre matricule.." value = "{{App\Http\Controllers\ProfilController::getInformationsEtudiants(auth()->user()->getIdUserAttribute())->getMatriculeAttribute()}}" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "row mt-3">
+                                                            <div class = "col-sm-6"></div>
+                                                            <div class = "col-sm-6 text-end">
+                                                                <button type = "submit" class = "btn btn-primary">Modifier</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                @elseif(auth()->user()->getRoleUserAttribute() == "Enseignant")
+                                                    <h5 class = "mb-3 mt-3 text-uppercase bg-light p-2">
+                                                        <i class = "mdi mdi-account-heart-outline  me-1"></i> 
+                                                        Enseignant
+                                                    </h5>
+                                                    <form name = "f-form-modifier-enseignant" id  = "f-form-modifier-enseignant" method = "post" action = "{{url('/modifier-enseignant')}}">
+                                                        @csrf
+                                                        <div class = "row">
+                                                            <div class = "col-md-6">
+                                                                <div class = "mb-3">
+                                                                    <label for = "grade" class = "form-label">Grade</label>
+                                                                    <input type = "text" class = "form-control" id = "grade" name = "grade" placeholder = "Saisissez votre grade.." value = "{{App\Http\Controllers\ProfilController::getInformationsEnseignants(auth()->user()->getIdUserAttribute())->getGradeAttribute()}}" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-md-6">
+                                                                <div class = "mb-3">
+                                                                    <label for = "specialite" class = "form-label">Spécialité</label>
+                                                                    <input type = "text" class = "form-control" id = "specialite" name = "specialite" placeholder = "Saisissez votre spécialité.." value = "{{App\Http\Controllers\ProfilController::getInformationsEnseignants(auth()->user()->getIdUserAttribute())->getSpecialiteAttribute()}}" required>
                                                                 </div>
                                                             </div>
                                                         </div>

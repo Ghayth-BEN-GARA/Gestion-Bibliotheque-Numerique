@@ -70,7 +70,7 @@
             return User::where("email", "=", $email)->exists();
         }
 
-        public function creerNewUser($nom, $prenom, $date_naissance, $genre, $numero, $adresse, $cin, $email, $password){
+        public function creerNewUser($nom, $prenom, $date_naissance, $genre, $numero, $adresse, $cin, $email, $password, $role){
             $user = new User();
             $user->setNomUserAttribute($nom);
             $user->setPrenomUserAttribute($prenom);
@@ -81,6 +81,7 @@
             $user->setCinUserAttribute($cin);
             $user->setEmailUserAttribute($email);
             $user->setPasswordUserAttribute(Hash::make($password));
+            $user->setRoleUserAttribute($role);
             
             return $user->save();
         }
@@ -143,7 +144,7 @@
                 return back()->with("erreur", "Nous sommes désolés de vous informer que cette adresse email est utilisée par un autre utilisateur.");
             }
 
-            else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password)){
+            else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password, $request->role)){
                 $this->creerNewEnseignant($request->grade, $request->specialite, $this->getIdUserAttribute($request->email));
                 $this->envoyerMailCreerUser($request->nom, $request->prenom, $request->email, $request->password);
                 $this->creerTypeMode($this->getIdUserAttribute($request->email));
@@ -160,6 +161,7 @@
             $enseignant = new Enseignant();
             $enseignant->setGradeAttribute($grade);
             $enseignant->setSpecialiteAttribute($specialite);
+            $enseignant->setIdUserAttribute($id_user);
 
             return $enseignant->save();
         }
