@@ -5,6 +5,7 @@
     use Illuminate\Support\Facades\Auth;
     use App\Models\User;
     use App\Models\ReseauSocial;
+    use App\Models\Etudiant;
     use Session;
     use Hash;
 
@@ -204,6 +205,27 @@
         public function modifierPassword($id_user, $password){
             return User::where("id_user", "=", $id_user)->update([
                 "password" => bcrypt($password)
+            ]);
+        }
+
+        public static function getInformationsEtudiants($id_user){
+            return Etudiant::where("id_user", "=", $id_user)->first();
+        }
+
+        public function gestionModifierEtudiant(Request $request){
+            if($this->modifierEtudiant($request->niveau, $request->matricule, auth()->user()->getIdUserAttribute())){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vos informations a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier vos informations. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierEtudiant($niveau, $matricule, $id_user){
+            return Etudiant::where("id_user", "=", $id_user)->update([
+                "niveau" => $niveau,
+                "matricule" => $matricule
             ]);
         }
     }

@@ -219,6 +219,30 @@
                                                         </span>
                                                     </div>
                                                 </div>
+                                                @if(auth()->user()->getRoleUserAttribute() == "Étudiant")
+                                                    <div class = "row col-md-12 mb-3">
+                                                        <div class = "col-md-6">
+                                                            <span>
+                                                                <i class = "mdi mdi-elevator me-1"></i>
+                                                                <b class = "text-capitalize">Niveau :</b>
+                                                            </span>
+                                                            <br>
+                                                            <span class = "mx-1 text-capitalize">
+                                                                {{App\Http\Controllers\ProfilController::getInformationsEtudiants(auth()->user()->getIdUserAttribute())->getNiveauAttribute()}}
+                                                            </span>
+                                                        </div>
+                                                        <div class = "col-md-6 text-end">
+                                                            <span>
+                                                                <i class = "mdi mdi-card-account-details me-1"></i>
+                                                                <b class = "text-capitalize">Matricule :</b>
+                                                            </span>
+                                                            <br>
+                                                            <span class = "mx-1 text-capitalize">
+                                                                {{App\Http\Controllers\ProfilController::getInformationsEtudiants(auth()->user()->getIdUserAttribute())->getMatriculeAttribute()}}
+                                                            </span>
+                                                        </div>
+                                                    </div>
+                                                @endif
                                                 <div class = "row col-md-12 mb-3">
                                                     <div class = "col-md-6">
                                                         <span>
@@ -400,6 +424,35 @@
                                                         </div>
                                                     </div>
                                                 </form>
+                                                @if(auth()->user()->getRoleUserAttribute() == "Étudiant")
+                                                    <h5 class = "mb-3 mt-3 text-uppercase bg-light p-2">
+                                                        <i class = "mdi mdi-account-heart  me-1"></i> 
+                                                        Étudiant
+                                                    </h5>
+                                                    <form name = "f-form-modifier-etudiant" id  = "f-form-modifier-etudiant" method = "post" action = "{{url('/modifier-etudiant')}}">
+                                                        @csrf
+                                                        <div class = "row">
+                                                            <div class = "col-md-6">
+                                                                <div class = "mb-3">
+                                                                    <label for = "niveau" class = "form-label">Niveau</label>
+                                                                    <input type = "text" class = "form-control" id = "niveau" name = "niveau" placeholder = "Saisissez votre niveau.." value = "{{App\Http\Controllers\ProfilController::getInformationsEtudiants(auth()->user()->getIdUserAttribute())->getNiveauAttribute()}}" required>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "col-md-6">
+                                                                <div class = "mb-3">
+                                                                    <label for = "matricule" class = "form-label">Matricule</label>
+                                                                    <input type = "text" class = "form-control" id = "matricule" name = "matricule" placeholder = "Saisissez votre matricule.." value = "{{App\Http\Controllers\ProfilController::getInformationsEtudiants(auth()->user()->getIdUserAttribute())->getMatriculeAttribute()}}" required>
+                                                                </div>
+                                                            </div>
+                                                        </div>
+                                                        <div class = "row mt-3">
+                                                            <div class = "col-sm-6"></div>
+                                                            <div class = "col-sm-6 text-end">
+                                                                <button type = "submit" class = "btn btn-primary">Modifier</button>
+                                                            </div>
+                                                        </div>
+                                                    </form>
+                                                @endif
                                             </div>
                                             <div class = "tab-pane" id = "securite">
                                                 <h5 class = "text-uppercase mb-4">

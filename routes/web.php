@@ -42,4 +42,5 @@
     Route::get("/liste-users",[UserController::class,"ouvrirListeUsers"])->middleware("session_not_bibliothecaire");
     Route::get("/add-user",[UserController::class,"ouvrirAddUser"])->middleware("session_not_bibliothecaire");
     Route::post("/creer-etudiant",[UserController::class,"gestionCreerEtudiant"]);
+    Route::post("/modifier-etudiant",[ProfilController::class,"gestionModifierEtudiant"]);
 ?>
