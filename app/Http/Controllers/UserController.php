@@ -120,5 +120,9 @@
 
             return $reseau->save();
         }
+
+        public function gestionCreerEnseignant(Request $request){
+            # code...
+        }
     }
 ?>

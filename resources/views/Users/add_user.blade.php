@@ -178,6 +178,114 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class = "tab-pane show" id = "shipping-information">
+                                                <div class = "row">
+                                                    <div class = "col-lg-12">
+                                                        <h4 class = "mt-2">Créer un enseignant</h4>
+                                                        <p class = "text-muted mb-4">
+                                                            Remplir ce formulaire par des informations de l'enseignant.
+                                                        </p>
+                                                        <form name = "creer-enseignant-form" id = "creer-enseignant-form" method = "post" action = "{{url('/creer-enseignant')}}">
+                                                            @csrf
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "nom" class = "form-label">Nom</label>
+                                                                        <input type = "text" class = "form-control" id = "nom" name = "nom" placeholder = "Saisissez le nom.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "prenom" class = "form-label">Prénom</label>
+                                                                        <input type = "text" class = "form-control" id = "prenom" name = "prenom" placeholder = "Saisissez le prénom.." required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "date_naissance" class = "form-label">Date De Naissance</label>
+                                                                        <input type = "date" class = "form-control" id = "date_naissance" name = "date_naissance" placeholder = "Saisissez la date de naissance.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "genre" class = "form-label">Genre</label>
+                                                                        <select class = "form-select" id = "genre" name = "genre" required>
+                                                                            <option value = "#" selected disabled>Sélectionnez le genre..</option>
+                                                                            <option value = "Femme">Femme</option>
+                                                                            <option value = "Homme">Homme</option>
+                                                                            <option value = "Non spécifié">Non spécifié</option>
+                                                                        </select>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "role" class = "form-label">Rôle</label>
+                                                                        <input type = "text" class = "form-control" id = "role" name = "role" placeholder = "Saisissez le rôle.." value = "Enseignant" required readonly>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "numero" class = "form-label">Numéro</label>
+                                                                        <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "adresse" class = "form-label">Adresse</label>
+                                                                        <input type = "text" class = "form-control" id = "adresse" name = "adresse" placeholder = "Saisissez l'adresse.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "cin" class = "form-label">Numéro de carte d'identité</label>
+                                                                        <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "email" class = "form-label">Email</label>
+                                                                        <input type = "email" class = "form-control" id = "email" name = "email" placeholder = "Saisissez l'adresse email.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "password" class = "form-label">Mot de passe</label>
+                                                                        <input type = "password" class = "form-control" id = "password" name = "password" placeholder = "Saisissez le mot de passe.." required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "specialite" class = "form-label">Spécialité</label>
+                                                                        <input type = "text" class = "form-control" id = "specialite" name = "specialite" placeholder = "Saisissez la spécialité.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "grade" class = "form-label">Grade</label>
+                                                                        <input type = "text" class = "form-control" id = "grade" name = "grade" placeholder = "Saisissez le grade.." required>
+                                                                    </div>
+                                                                </div>
+                                                            </div>
+                                                            <div class = "row mt-3">
+                                                                <div class = "col-sm-6"></div>
+                                                                <div class = "col-sm-6 text-end">
+                                                                    <button type = "submit" class = "btn btn-primary">Créer</button>
+                                                                </div>
+                                                            </div>
+                                                        </form>
+                                                    </div>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>
