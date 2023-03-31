@@ -9,6 +9,7 @@
     use App\Models\Etudiant;
     use App\Models\TypeMode;
     use App\Models\ReseauSocial;
+    use App\Models\Enseignant;
 
     class UserController extends Controller{
         public function ouvrirListeUsers(){
@@ -122,7 +123,45 @@
         }
 
         public function gestionCreerEnseignant(Request $request){
-            # code...
+            if(is_null($request->genre)){
+                return back()->with("erreur", "Vous devez sélectionner le genre.");
+            }
+
+            elseif(!$this->verifierNumeroMobileLength($request->numero)){
+                return back()->with("erreur", "Le numéro mobile doit être composé de 8 chiffres.");
+            }
+
+            else if($this->verifierSiNumeroMobileExist($request->numero)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de mobile est utilisé par un autre utilisateur.");
+            }
+
+            else if($this->verifierSiCinExist($request->cin)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de carte d'identité est utilisé par un autre utilisateur.");
+            }
+
+            else if($this->verifierSiEmailExist($request->email)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que cette adresse email est utilisée par un autre utilisateur.");
+            }
+
+            else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password)){
+                $this->creerNewEnseignant($request->grade, $request->specialite, $this->getIdUserAttribute($request->email));
+                $this->envoyerMailCreerUser($request->nom, $request->prenom, $request->email, $request->password);
+                $this->creerTypeMode($this->getIdUserAttribute($request->email));
+                $this->creerReseauSocial($this->getIdUserAttribute($request->email));
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette utilisateur a été crée avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas créer un nouveau utilisateur pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function creerNewEnseignant($grade, $specialite, $id_user){
+            $enseignant = new Enseignant();
+            $enseignant->setGradeAttribute($grade);
+            $enseignant->setSpecialiteAttribute($specialite);
+
+            return $enseignant->save();
         }
     }
 ?>

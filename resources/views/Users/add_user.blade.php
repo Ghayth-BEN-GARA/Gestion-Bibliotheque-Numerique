@@ -122,7 +122,7 @@
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
                                                                         <label for = "numero" class = "form-label">Numéro</label>
-                                                                        <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." required>
+                                                                        <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -136,7 +136,7 @@
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
                                                                         <label for = "cin" class = "form-label">Numéro de carte d'identité</label>
-                                                                        <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." required>
+                                                                        <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -230,7 +230,7 @@
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
                                                                         <label for = "numero" class = "form-label">Numéro</label>
-                                                                        <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." required>
+                                                                        <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
@@ -244,7 +244,7 @@
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
                                                                         <label for = "cin" class = "form-label">Numéro de carte d'identité</label>
-                                                                        <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." required>
+                                                                        <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
                                                                 </div>
                                                             </div>
