@@ -7,6 +7,8 @@
     use Hash;
     use App\Models\User;
     use App\Models\Etudiant;
+    use App\Models\TypeMode;
+    use App\Models\ReseauSocial;
 
     class UserController extends Controller{
         public function ouvrirListeUsers(){
@@ -41,6 +43,8 @@
             else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password)){
                 $this->creerNewEtudiant($request->matricule, $request->niveau, $this->getIdUserAttribute($request->email));
                 $this->envoyerMailCreerUser($request->nom, $request->prenom, $request->email, $request->password);
+                $this->creerTypeMode($this->getIdUserAttribute($request->email));
+                $this->creerReseauSocial($this->getIdUserAttribute($request->email));
                 return back()->with("success", "Nous sommes très heureux de vous informer que cette utilisateur a été crée avec succès.");
             }
 
@@ -101,6 +105,20 @@
             ];
 
             return Mail::to($email)->send(new EnvoyerMailSignupUser($mailData));
+        }
+
+        public function creerTypeMode($id_user){
+            $mode = new TypeMode();
+            $mode->setIdUserAttribute($id_user);
+
+            return $mode->save();
+        }
+
+        public function creerReseauSocial($id_user){
+            $reseau = new ReseauSocial();
+            $reseau->setIdUserAttribute($id_user);
+
+            return $reseau->save();
         }
     }
 ?>

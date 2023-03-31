@@ -39,7 +39,7 @@
     Route::post("/modifier-reseaux-sociaux",[ProfilController::class,"gestionModifierReseauxSociaux"]);
     Route::post("/modifier-email",[ProfilController::class,"gestionModifierEmail"]);
     Route::post("/modifier-password",[ProfilController::class,"gestionModifierPassword"]);
-    Route::get("/liste-users",[UserController::class,"ouvrirListeUsers"])->middleware("session_not_exist");
-    Route::get("/add-user",[UserController::class,"ouvrirAddUser"])->middleware("session_not_exist");
+    Route::get("/liste-users",[UserController::class,"ouvrirListeUsers"])->middleware("session_not_bibliothecaire");
+    Route::get("/add-user",[UserController::class,"ouvrirAddUser"])->middleware("session_not_bibliothecaire");
     Route::post("/creer-etudiant",[UserController::class,"gestionCreerEtudiant"]);
 ?>

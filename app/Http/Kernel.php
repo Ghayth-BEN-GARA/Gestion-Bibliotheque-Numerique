@@ -63,6 +63,7 @@
             'verified' => \Illuminate\Auth\Middleware\EnsureEmailIsVerified::class,
             'session_exist' => \App\Http\Middleware\SessionExist::class,
             'session_not_exist' => \App\Http\Middleware\SessionNotExist::class,
+            'session_not_bibliothecaire' => \App\Http\Middleware\SessionNotBibliothecaire::class,
         ];
     }
 ?>
