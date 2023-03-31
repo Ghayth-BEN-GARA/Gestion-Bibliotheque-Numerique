@@ -149,13 +149,19 @@
                                                                 </div>
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
-                                                                        <label for = "matricule" class = "form-label">Matricule</label>
-                                                                        <input type = "text" class = "form-control" id = "matricule" name = "matricule" placeholder = "Saisissez la matricule.." required>
+                                                                        <label for = "password" class = "form-label">Mot de passe</label>
+                                                                        <input type = "password" class = "form-control" id = "password" name = "password" placeholder = "Saisissez le mot de passe.." required>
                                                                     </div>
                                                                 </div>
                                                             </div>
                                                             <div class = "row">
-                                                                <div class = "col-md-12">
+                                                                <div class = "col-md-6">
+                                                                    <div class = "mb-3">
+                                                                        <label for = "matricule" class = "form-label">Matricule</label>
+                                                                        <input type = "text" class = "form-control" id = "matricule" name = "matricule" placeholder = "Saisissez la matricule.." required>
+                                                                    </div>
+                                                                </div>
+                                                                <div class = "col-md-6">
                                                                     <div class = "mb-3">
                                                                         <label for = "niveau" class = "form-label">Niveau</label>
                                                                         <input type = "text" class = "form-control" id = "niveau" name = "niveau" placeholder = "Saisissez la niveau.." required>

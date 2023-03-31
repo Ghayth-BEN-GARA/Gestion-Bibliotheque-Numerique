@@ -19,6 +19,12 @@
                                 <p style = "margin-top: 0; margin-bottom: 1rem;">Bonjour M. {{$mailData['fullname']}}, </p>
                                 <p style = "margin-top: 0; margin-bottom: 1rem;">
                                     Vous avez créé un nouveau compte sur notre plateforme. Vous pouvez maintenant utiliser votre compte normalement. Si vous avez des questions, n'hésitez pas à nous contacter à tout moment.
+                                    Les paramètres d'accés pour votre compte sont :
+                                    <ul>
+                                        <li><b>Adresse email :</b> {{$mailData['email']}}</li>
+                                        <li><b>Mot de passe :</b> {{$mailData['password']}}</li>
+
+                                    </ul>
                                 </p>
                                 <hr style = "margin: 1rem 0; color: inherit; background-color: currentColor; border: 0; opacity: 0.25; height: 1px;">
                                 <p style = "margin-top: 0; margin-bottom: 1rem;">

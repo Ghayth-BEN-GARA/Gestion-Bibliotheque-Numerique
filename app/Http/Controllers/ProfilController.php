@@ -147,13 +147,21 @@
         }
 
         public function gestionModifierEmail(Request $request){
-            if($this->modifierEmail(auth()->user()->getIdUserAttribute(), $request->email)){
+            if($this->verifierSiEmailExist(auth()->user()->getIdUserAttribute(), $request->email)){
+                return back()->with("erreur", "Nous sommes désolés de vous informer que cette adresse email est utilisé par un autre utilisateur.");
+            }
+
+            elseif($this->modifierEmail(auth()->user()->getIdUserAttribute(), $request->email)){
                 return back()->with("success", "Nous sommes très heureux de vous informer que l'adresse email a été modifiée avec succès.");
             }
 
             else{
                 return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier l'adresse email pour le moment. Veuillez réessayer plus tard.");
             }
+        }
+
+        public function verifierSiEmailExist($id_user, $email){
+            return User::where("id_user", "<>", $id_user)->where("email", "=", $email)->exists();
         }
 
         public function modifierEmail($id_user, $email){
