@@ -20,7 +20,7 @@
         public function gestionSupprimerCompte(){
             if($this->supprimerCompte(auth()->user()->getIdUserAttribute())){
                 if($this->logoutUser()){
-                    return redirect("/")->with("deleted", "Votre compte a été supprimé avec succès aujourd'hui. Si vous pensez qu'il a été supprimé par erreur, veuillez contacter l'administration.");
+                    return redirect("/")->with("deleted", "Votre compte a été supprimé avec succès. Si vous pensez qu'il a été supprimé par erreur, veuillez contacter l'administration.");
                 }
 
                 else{

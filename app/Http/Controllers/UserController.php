@@ -41,7 +41,7 @@
                 return back()->with("erreur", "Nous sommes désolés de vous informer que cette adresse email est utilisée par un autre utilisateur.");
             }
 
-            else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password)){
+            else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password, $request->role)){
                 $this->creerNewEtudiant($request->matricule, $request->niveau, $this->getIdUserAttribute($request->email));
                 $this->envoyerMailCreerUser($request->nom, $request->prenom, $request->email, $request->password);
                 $this->creerTypeMode($this->getIdUserAttribute($request->email));
@@ -164,6 +164,20 @@
             $enseignant->setIdUserAttribute($id_user);
 
             return $enseignant->save();
+        }
+
+        public function gestionSupprimerUser(Request $request){
+            if($this->supprimerUser($request->input("id_user"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette utilisateur a été supprimé avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas supprimer cette utilisateur pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function supprimerUser($id_user){
+            return User::where("id_user", "=", $id_user)->delete();
         }
     }
 ?>

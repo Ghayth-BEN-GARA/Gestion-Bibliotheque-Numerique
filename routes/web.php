@@ -45,4 +45,5 @@
     Route::post("/modifier-etudiant",[ProfilController::class,"gestionModifierEtudiant"]);
     Route::post("/creer-enseignant",[UserController::class,"gestionCreerEnseignant"]);
     Route::post("/modifier-enseignant",[ProfilController::class,"gestionModifierEnseignant"]);
+    Route::get("/delete-user",[UserController::class,"gestionSupprimerUser"]);
 ?>
