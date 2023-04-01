@@ -179,5 +179,40 @@
         public function supprimerUser($id_user){
             return User::where("id_user", "=", $id_user)->delete();
         }
+
+        public function ouvrirUser(Request $request){
+            $user = null;
+            $links = $this->getLinksReseauxSociaux($request->input("id_user"));
+
+            if($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
+                $user = $this->getInformationsUserEtudiant($request->input("id_user"));
+            }
+
+            else{
+                $user = $this->getInformationsUserEnseignant($request->input("id_user"));
+            }
+            
+            return view("Users.user", compact("user", "links"));
+        }
+
+        public function getInformationsUserEtudiant($id_user){
+            return User::where("users.id_user", "=", $id_user)
+            ->join("etudiants", "etudiants.id_user", "users.id_user")
+            ->first();
+        }
+
+        public function getInformationsUserEnseignant($id_user){
+            return User::where("users.id_user", "=", $id_user)
+            ->join("enseignants", "enseignants.id_user", "users.id_user")
+            ->first();
+        }
+
+        public function getInformationsUser($id_user){
+            return User::where("id_user", "=", $id_user)->first();
+        }
+
+        public function getLinksReseauxSociaux($id_user){
+            return ReseauSocial::where("id_user", "=", $id_user)->first();
+        }
     }
 ?>

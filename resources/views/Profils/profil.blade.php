@@ -35,7 +35,7 @@
                                         <p class = "text-muted font-14">{{auth()->user()->getRoleUserAttribute()}}</p>
                                         <a href = "{{url('/edit-photo-profil')}}" class = "btn btn-primary btn-sm mb-2">Modifier la photo de profil</a>
                                         <div class = "text-start mt-3">
-                                            <h4 class = "font-13 text-uppercase">À propos de mois :</h4>
+                                            <h4 class = "font-13 text-uppercase">À propos de moi :</h4>
                                             <p class = "text-muted font-13 mb-3">
                                                 Bonjour je m'appelle {{auth()->user()->getFullnameUserAttribute()}}, je suis un {{auth()->user()->getRoleUserAttribute()}} de l'IPSAS.
                                             </p>
@@ -214,7 +214,7 @@
                                                             <b class = "text-capitalize">Adresse email :</b>
                                                         </span>
                                                         <br>
-                                                        <span class = "mx-1 text-capitalize">
+                                                        <span class = "mx-1">
                                                             {{auth()->user()->getEmailUserAttribute()}}
                                                         </span>
                                                     </div>

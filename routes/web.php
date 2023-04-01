@@ -46,4 +46,5 @@
     Route::post("/creer-enseignant",[UserController::class,"gestionCreerEnseignant"]);
     Route::post("/modifier-enseignant",[ProfilController::class,"gestionModifierEnseignant"]);
     Route::get("/delete-user",[UserController::class,"gestionSupprimerUser"]);
+    Route::get("/user",[UserController::class,"ouvrirUser"])->middleware("session_not_bibliothecaire");
 ?>
