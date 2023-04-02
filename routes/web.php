@@ -49,4 +49,5 @@
     Route::get("/user",[UserController::class,"ouvrirUser"])->middleware("session_not_bibliothecaire");
     Route::get("/edit-user",[UserController::class,"ouvrirEditUser"])->middleware("session_not_bibliothecaire");
     Route::post("/update-etudiant",[UserController::class,"gestionUpdateEtudiant"]);
+    Route::post("/update-enseignant",[UserController::class,"gestionUpdateEnseignant"]);
 ?>

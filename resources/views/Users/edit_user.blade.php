@@ -147,8 +147,98 @@
                                                     </div>
                                                 </div>
                                             </form>
-                                        @else
-
+                                        @elseif($user->getRoleUserAttribute() == "Enseignant")
+                                            <form name = "modifier-enseignant-form" id = "modifier-enseignant-form" method = "post" action = "{{url('/update-enseignant')}}">
+                                                @csrf
+                                                <div class = "row">
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "nom" class = "form-label">Nom</label>
+                                                            <input type = "text" class = "form-control" id = "nom" name = "nom" placeholder = "Saisissez le nom.." value = "{{$user->getNomUserAttribute()}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "prenom" class = "form-label">Prénom</label>
+                                                            <input type = "text" class = "form-control" id = "prenom" name = "prenom" placeholder = "Saisissez le prénom.." value = "{{$user->getPrenomUserAttribute()}}" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "date_naissance" class = "form-label">Date De Naissance</label>
+                                                            <input type = "date" class = "form-control" id = "date_naissance" name = "date_naissance" placeholder = "Saisissez la date de naissance.." value = "{{$user->getDateNaissanceUserAttribute()}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "genre" class = "form-label">Genre</label>
+                                                            <select class = "form-select" id = "genre" name = "genre" required>
+                                                                <option value = "#" selected disabled>Sélectionnez le genre..</option>
+                                                                <option value = "Femme" <?php echo !$user->getGenreUserAttribute() == null && $user->getGenreUserAttribute() == "Femme" ? "selected" : '' ?>>Femme</option>
+                                                                <option value = "Homme" <?php  echo !$user->getGenreUserAttribute() == null && $user->getGenreUserAttribute() == "Homme" ? "selected" : '' ?>>Homme</option>
+                                                                <option value = "Non spécifié" <?php echo !$user->getGenreUserAttribute() == null && $user->getGenreUserAttribute() == "Non spécifié" ? "selected" : '' ?>>Non spécifié</option>
+                                                            </select>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "role" class = "form-label">Rôle</label>
+                                                            <input type = "text" class = "form-control" id = "role" name = "role" placeholder = "Saisissez le rôle.." value = "Étudiant" required readonly>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "numero" class = "form-label">Numéro</label>
+                                                            <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." value = "{{$user->getMobileUserAttribute()}}" onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
+                                                        </div>
+                                                        @if (session()->has('erreur_numero'))
+                                                            <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_numero')}}</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "adresse" class = "form-label">Adresse</label>
+                                                            <input type = "text" class = "form-control" id = "adresse" name = "adresse" placeholder = "Saisissez l'adresse.." value = "{{$user->getAdresseUserAttribute()}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "cin" class = "form-label">Numéro de carte d'identité</label>
+                                                            <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" value = "{{$user->getCinUserAttribute()}}" required>
+                                                        </div>
+                                                        @if (session()->has('erreur_cin'))
+                                                            <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_cin')}}</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
+                                                 <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "specialite" class = "form-label">Spécialité</label>
+                                                            <input type = "text" class = "form-control" id = "specialite" name = "specialite" placeholder = "Saisissez la spécialité.." value = "{{$user->specialite}}" required>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "grade" class = "form-label">Grade</label>
+                                                            <input type = "text" class = "form-control" id = "grade" name = "grade" placeholder = "Saisissez le grade.." value = "{{$user->grade}}" required>
+                                                        </div>
+                                                    </div>
+                                                </div>
+                                                <input type = "hidden" id = "id_user" name = "id_user" value = "{{$_GET['id_user']}}" required>
+                                                <div class = "row mt-3">
+                                                    <div class = "col-sm-6"></div>
+                                                    <div class = "col-sm-6 text-end">
+                                                        <button type = "submit" class = "btn btn-primary">Créer</button>
+                                                    </div>
+                                                </div>
+                                            </form>
                                         @endif
                                     </div>
                                 </div>
