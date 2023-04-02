@@ -22,23 +22,27 @@
 
         public function gestionCreerEtudiant(Request $request){
             if(is_null($request->genre)){
-                return back()->with("erreur", "Vous devez sélectionner le genre.");
+                return back()->with("erreur_genre", "Vous devez sélectionner le genre.");
             }
 
             elseif(!$this->verifierNumeroMobileLength($request->numero)){
-                return back()->with("erreur", "Le numéro mobile doit être composé de 8 chiffres.");
+                return back()->with("erreur_numero", "Le numéro mobile doit être composé de 8 chiffres.");
             }
 
-            else if($this->verifierSiNumeroMobileExist($request->numero)){
-                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de mobile est utilisé par un autre utilisateur.");
+            elseif($this->verifierSiNumeroMobileExist($request->numero)){
+                return back()->with("erreur_numero", "Nous sommes désolés de vous informer que ce numéro de mobile est utilisé par un autre utilisateur.");
             }
 
-            else if($this->verifierSiCinExist($request->cin)){
-                return back()->with("erreur", "Nous sommes désolés de vous informer que ce numéro de carte d'identité est utilisé par un autre utilisateur.");
+            elseif(!$this->verifierCinLength($request->cin)){
+                return back()->with("erreur_cin", "Le numéro de la carte d'identité doit être composé de 8 chiffres.");
             }
 
-            else if($this->verifierSiEmailExist($request->email)){
-                return back()->with("erreur", "Nous sommes désolés de vous informer que cette adresse email est utilisée par un autre utilisateur.");
+            elseif($this->verifierSiCinExist($request->cin)){
+                return back()->with("erreur_cin", "Nous sommes désolés de vous informer que ce numéro de carte d'identité est utilisé par un autre utilisateur.");
+            }
+
+            elseif($this->verifierSiEmailExist($request->email)){
+                return back()->with("erreur_email", "Nous sommes désolés de vous informer que cette adresse email est utilisée par un autre utilisateur.");
             }
 
             else if($this->creerNewUser($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->email, $request->password, $request->role)){
@@ -213,6 +217,74 @@
 
         public function getLinksReseauxSociaux($id_user){
             return ReseauSocial::where("id_user", "=", $id_user)->first();
+        }
+
+        public function ouvrirEditUser(Request $request){
+            $user = null;
+
+            if($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
+                $user = $this->getInformationsUserEtudiant($request->input("id_user"));
+            }
+
+            else{
+                $user = $this->getInformationsUserEnseignant($request->input("id_user"));
+            }
+            
+            return view("Users.edit_user", compact("user"));
+        }
+
+        public function gestionUpdateEtudiant(Request $request){
+            if(!$this->verifierNumeroMobileLength($request->numero)){
+                return back()->with("erreur_numero", "Votre numéro mobile doit être composé de 8 chiffres.");
+            }
+
+            elseif($this->verifierSiNumeroMobileNoActuelExist($request->id_user, $request->numero)){
+                return back()->with("erreur_numero", "Nous sommes désolés de vous informer que ce numéro de mobile est utilisé par un autre utilisateur.");
+            }
+
+            elseif(!$this->verifierCinLength($request->cin)){
+                return back()->with("erreur_cin", "Votre numéro de carte d'identité doit être composé de 8 chiffres.");
+            }
+
+            elseif($this->verifierSiCinNotActuelExist($request->id_user, $request->cin)){
+                return back()->with("erreur_cin", "Nous sommes désolés de vous informer que ce numéro de carte d'identité est utilisé par un autre utilisateur.");
+            }
+
+            elseif($this->modifierEtudiant($request->nom, $request->prenom, $request->date_naissance, $request->genre, $request->numero, $request->adresse, $request->cin, $request->matricule, $request->niveau, $request->id_user)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette utilisateur a été modifiée avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier cette utilisateur pour le moment. Veuillez réessayer plus tard.");
+            }
+
+        }
+
+        public function verifierSiNumeroMobileNoActuelExist($id_user, $numero){
+            return User::where("id_user", "<>", $id_user)->where("mobile", "=", $numero)->exists();
+        }
+
+        public function verifierCinLength($cin){
+            return Str::length($cin) == 8;
+        }
+
+        public function verifierSiCinNotActuelExist($id_user, $cin){
+            return User::where("id_user", "<>", $id_user)->where("cin", "=", $cin)->exists();
+        }
+
+        public function modifierEtudiant($nom, $prenom, $naissance, $genre, $numero, $adresse, $cin, $matricule, $niveau, $id_user){
+            return User::join("etudiants", "users.id_user", "=", "etudiants.id_user")
+            ->where("users.id_user", "=", $id_user)
+            ->update([
+                "nom" => $nom,
+                "prenom" => $prenom,
+                "genre" => $genre,
+                "mobile" => $numero,
+                "adresse" => $adresse,
+                "cin" => $cin,
+                "matricule" => $matricule,
+                "niveau" => $niveau
+            ]);
         }
     }
 ?>

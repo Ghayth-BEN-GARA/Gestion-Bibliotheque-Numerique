@@ -110,6 +110,9 @@
                                                                             <option value = "Non spécifié">Non spécifié</option>
                                                                         </select>
                                                                     </div>
+                                                                    @if (session()->has('erreur_genre'))
+                                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_genre')}}</p>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             <div class = "row">
@@ -124,6 +127,9 @@
                                                                         <label for = "numero" class = "form-label">Numéro</label>
                                                                         <input type = "number" class = "form-control" id = "numero" name = "numero" placeholder = "Saisissez le numéro.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
+                                                                    @if (session()->has('erreur_numero'))
+                                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_numero')}}</p>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             <div class = "row">
@@ -138,6 +144,9 @@
                                                                         <label for = "cin" class = "form-label">Numéro de carte d'identité</label>
                                                                         <input type = "number" class = "form-control" id = "cin" name = "cin" placeholder = "Saisissez le numéro de la carte d'identité.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
                                                                     </div>
+                                                                    @if (session()->has('erreur_cin'))
+                                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_cin')}}</p>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             <div class = "row">
@@ -146,6 +155,9 @@
                                                                         <label for = "email" class = "form-label">Email</label>
                                                                         <input type = "email" class = "form-control" id = "email" name = "email" placeholder = "Saisissez l'adresse email.." required>
                                                                     </div>
+                                                                    @if (session()->has('erreur_email'))
+                                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_email')}}</p>
+                                                                    @endif
                                                                 </div>
                                                                 <div class = "col-md-6">
                                                                     <div class = "mb-3">
