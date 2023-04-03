@@ -6,6 +6,7 @@
     use App\Http\Controllers\JournalController;
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\AnneeUniversitaireController;
+    use App\Http\Controllers\PfeController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -58,4 +59,5 @@
     Route::get("/annee-universitaire",[AnneeUniversitaireController::class,"ouvrirAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
     Route::get("/edit-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirEditAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
     Route::post("/modifier-annee-univeritaire",[AnneeUniversitaireController::class,"gestionModifierAnneeUniversitaire"]);
+    Route::get("/liste-pfes",[PfeController::class,"ouvrirListePfes"])->middleware("session_not_exist");
 ?>

@@ -60,6 +60,22 @@
                     </div>
                 </li>
             @endif
+            <li class = "side-nav-item">
+                <a data-bs-toggle = "collapse" href = "#pfes" aria-expanded = "false" aria-controls = "pfes" class = "side-nav-link">
+                    <i class = "uil-graduation-hat"></i>
+                    <span> PFE </span>
+                    <span class = "menu-arrow"></span>
+                </a>
+                <div class = "collapse" id = "pfes">
+                    <ul class = "side-nav-second-level">
+                        <li>
+                            @if(auth()->user()->getRoleUserAttribute() == "Bibliothécaire")
+                                <a href = "{{url('/liste-pfes')}}">Gérer</a>
+                            @endif
+                        </li>       
+                    </ul>
+                </div>
+            </li>
         </ul>
     </div>
 </div>
