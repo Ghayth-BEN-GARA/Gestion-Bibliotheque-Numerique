@@ -2,7 +2,7 @@
 <html lang = "en">
     <head>
         @include("Layouts.head_site")
-        <title>Années universitaire | Bibliothèque</title>
+        <title>Nouvelle année universitaire | Bibliothèque</title>
     </head>
     @include("Layouts.body_type_mode")
         <div class = "wrapper">
@@ -19,10 +19,10 @@
                                             <li class = "breadcrumb-item">
                                                 <a href = "{{url('/dashboard')}}">Dashboard</a>
                                             </li>
-                                            <li class = "breadcrumb-item active">Années universitaire</li>
+                                            <li class = "breadcrumb-item active">Nouvelle année universitaire</li>
                                         </ol>
                                     </div>
-                                    <h4 class = "page-title">Années universitaire</h4>
+                                    <h4 class = "page-title">Nouvelle année universitaire</h4>
                                 </div>
                             </div>
                         </div>
@@ -30,6 +30,10 @@
                             <div class = "col-12">
                                 <div class = "card">
                                     <div class = "card-body">
+                                        <h4 class = "header-title">Nouvelle année universitaire</h4>
+                                        <p class = "text-muted font-14">
+                                            Créez une nouvelle année universitaire en ajoutant la date de début et la date date de fin.
+                                        </p>
                                         @if(Session()->has("success"))
                                             <div class = "alert alert-success d-flex alert-dismissible fade show mt-1" role = "alert">
                                                 <svg xmlns = "http://www.w3.org/2000/svg" width = "24" height = "24" fill = "currentColor" class = "bi flex-shrink-0 me-2" viewBox = "0 0 16 16" role = "img" aria-label = "Warning:">
@@ -51,7 +55,35 @@
                                                 <button type = "button" class = "btn-close" data-bs-dismiss = "alert" aria-label = "Close"></button>
                                             </div>
                                         @endif
-                                        <livewire:liste-annees-universitaire-livewire/>
+                                        <form name = "creer-annee-universitaire-form" id = "creer-annee-universitaire-form" method = "post" action = "{{url('/creer-annee-univeritaire')}}">
+                                            @csrf
+                                            <div class = "row">
+                                                <div class = "col-md-6">
+                                                    <div class = "mb-3">
+                                                        <label for = "debut" class = "form-label">Début</label>
+                                                        <input type = "number" class = "form-control" id = "debut" name = "debut" placeholder = "Saisissez la date de début.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
+                                                    </div>
+                                                    @if (session()->has('erreur_debut'))
+                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_debut')}}</p>
+                                                    @endif
+                                                </div>
+                                                <div class = "col-md-6">
+                                                    <div class = "mb-3">
+                                                        <label for = "fin" class = "form-label">Fin</label>
+                                                        <input type = "number" class = "form-control" id = "fin" name = "fin" placeholder = "Saisissez la date de fin.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" required>
+                                                    </div>
+                                                    @if (session()->has('erreur_fin'))
+                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_fin')}}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class = "row mt-3">
+                                                <div class = "col-sm-6"></div>
+                                                <div class = "col-sm-6 text-end">
+                                                    <button type = "submit" class = "btn btn-primary">Créer</button>
+                                                </div>
+                                            </div>
+                                        </form>
                                     </div>
                                 </div>
                             </div>

@@ -5,6 +5,7 @@
     use App\Http\Controllers\ProfilController;
     use App\Http\Controllers\JournalController;
     use App\Http\Controllers\UserController;
+    use App\Http\Controllers\AnneeUniversitaireController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -50,4 +51,7 @@
     Route::get("/edit-user",[UserController::class,"ouvrirEditUser"])->middleware("session_not_bibliothecaire");
     Route::post("/update-etudiant",[UserController::class,"gestionUpdateEtudiant"]);
     Route::post("/update-enseignant",[UserController::class,"gestionUpdateEnseignant"]);
+    Route::get("/liste-annees-universitaire",[AnneeUniversitaireController::class,"ouvrirListeAnneesUniversitaire"])->middleware("session_not_bibliothecaire");
+    Route::get("/add-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirAddAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
+    Route::post("/creer-annee-univeritaire",[AnneeUniversitaireController::class,"gestionCreerAnneeUniversitaire"]);
 ?>
