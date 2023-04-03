@@ -38,13 +38,5 @@
         public function setFinAttribute($value){
             $this->attributes["fin"] = $value;
         }
-
-        public function getFormattedDebutAttribute(){
-            return strftime("%A %d %B %Y",strtotime(strftime($this->getDebutAttribute())));
-        }
-
-        public function getFormattedFinAttribute(){
-            return strftime("%A %d %B %Y",strtotime(strftime($this->getFinAttribute())));
-        }
     }
 ?>

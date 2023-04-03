@@ -54,4 +54,5 @@
     Route::get("/liste-annees-universitaire",[AnneeUniversitaireController::class,"ouvrirListeAnneesUniversitaire"])->middleware("session_not_bibliothecaire");
     Route::get("/add-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirAddAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
     Route::post("/creer-annee-univeritaire",[AnneeUniversitaireController::class,"gestionCreerAnneeUniversitaire"]);
+    Route::get("/delete-annee-universitaire",[AnneeUniversitaireController::class,"gestionSupprimerAnneeUniversitaire"]);
 ?>
