@@ -35,7 +35,22 @@
                                             Consultation des informations de cette année universitaire qui est enregistré dans notre système.
                                         </p>
                                         @if($annee != null)
-
+                                            <table class = "table table-bordered table-centered mb-0">
+                                                <thead>
+                                                    <tr class = "text-center">
+                                                        <th>Identifiant</th>
+                                                        <th>Année De Début</th>
+                                                        <th>Année De La Fin</th>
+                                                    </tr>
+                                                </thead>
+                                                <tbody>
+                                                    <tr class = "text-center">
+                                                        <td>{{$annee->getIdAnneeUniversitaireAttribute()}}</td>
+                                                        <td>{{$annee->getDebutAttribute()}}</td>
+                                                        <td>{{$annee->getFinAttribute()}}</td>
+                                                    </tr>
+                                                </tbody>
+                                            </table>
                                         @else
                                             <div class = "alert alert-warning d-flex alert-dismissible fade show mt-1" role = "alert">
                                                 <svg xmlns = "http://www.w3.org/2000/svg" width = "24" height = "24" fill = "currentColor" class = "bi flex-shrink-0 me-2" viewBox = "0 0 16 16" role = "img" aria-label = "Warning:">
