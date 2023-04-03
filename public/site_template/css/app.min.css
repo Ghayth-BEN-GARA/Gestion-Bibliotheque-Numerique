@@ -15143,15 +15143,17 @@ body.auth-fluid-pages[data-leftbar-compact-mode="condensed"] {
     white-space: nowrap;
     overflow-x: auto;
 }
+
 .tasks {
     display: inline-block;
-    width: 22rem;
+    width: 100%;
     padding: 0 1rem 1rem 1rem;
     border: 1px solid #eef2f7;
     vertical-align: top;
     margin-bottom: 24px;
     border-radius: 0.25rem;
 }
+
 .tasks.tasks:not(:last-child) {
     margin-right: 1.25rem;
 }
@@ -15169,7 +15171,6 @@ body.auth-fluid-pages[data-leftbar-compact-mode="condensed"] {
     position: relative;
 }
 .task-list-items:before {
-    content: "No Tasks";
     position: absolute;
     line-height: 110px;
     width: 100%;
