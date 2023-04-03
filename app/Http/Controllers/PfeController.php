@@ -1,6 +1,7 @@
 <?php
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
+    use Response;
     use App\Models\AnneeUniversitaire;
     use App\Models\Pfe;
 
@@ -58,6 +59,10 @@
 
         public function deletePfe($id_pfe){
             return Pfe::where("id_pfe", "=", $id_pfe)->delete();
+        }
+
+        public function getInformationsPfe($id_pfe){
+            return Pfe::where("id_pfe", "=", $id_pfe)->first();
         }
     }
 ?>

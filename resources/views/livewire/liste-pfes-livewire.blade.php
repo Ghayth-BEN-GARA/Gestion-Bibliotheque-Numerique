@@ -104,7 +104,7 @@
                                                         <i class = "mdi mdi-delete me-1"></i>
                                                         Supprimer
                                                     </a>
-                                                    <a href = "" class = "dropdown-item">
+                                                    <a href = "{{$data->getPdfAttribute()}}" class = "dropdown-item" target = "_blank">
                                                         <i class = "mdi mdi-download me-1"></i>
                                                         Télécharger
                                                     </a>
