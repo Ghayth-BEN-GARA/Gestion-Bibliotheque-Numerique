@@ -15138,10 +15138,10 @@ body.auth-fluid-pages[data-leftbar-compact-mode="condensed"] {
     line-height: 58px;
     border-radius: 50%;
 }
+
 .board {
     display: block;
     white-space: nowrap;
-    overflow-x: auto;
 }
 
 .tasks {

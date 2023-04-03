@@ -45,5 +45,19 @@
 
             return $pfe->save();
         }
+
+        public function gestionDeletePfe(Request $request){
+            if($this->deletePfe($request->input("id_pfe"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que ce pfe a été supprimé avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas supprimer ce pfe pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function deletePfe($id_pfe){
+            return Pfe::where("id_pfe", "=", $id_pfe)->delete();
+        }
     }
 ?>

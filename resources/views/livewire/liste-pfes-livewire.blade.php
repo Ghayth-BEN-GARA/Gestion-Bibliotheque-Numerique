@@ -27,16 +27,36 @@
                 </div>
             </div>
         </div>
+    @else
+        <div class = "row mb-2">
+            <div class = "col-md-4">
+                <select class = "form-select" id = "annee_universitaire" name = "annee_universitaire" wire:model = "annee_universitaire" required>
+                    <option value = "Tout" selected disabled>Sélectionnez l'année universitaire..</option>
+                    @if(count($this->getListeAnneesUniversitaires()) == 0)
+                            <option value = "#" selected disabled>La liste des années universitaires est vide.</option>
+                        @else
+                            @foreach($this->getListeAnneesUniversitaires() as $data)
+                                <option value = "{{$data->id_annee_universitaire}}">Année universitaire {{$data->debut}} - {{$data->fin}}</option>
+                            @endforeach
+                        @endif
+                </select>
+            </div>
+            <div class = "col-md-8">
+                <div class = "mb-3">
+                    <input type = "text" class = "form-control" id = "search_pfe" name = "search_pfe" placeholder = "Chercher un pfe.." wire:model = "search_pfe" required>
+                </div>
+            </div>
+        </div>
     @endif
     <div class = "row">
         <div class = "col-12">
             <div class = "board">
                 <div class = "tasks" data-plugin = "dragula">
                     <h5 class = "mt-0 task-header">Projets de fin d'étude ({{count($pfes)}})</h5>
-                    <div id = "task-list-one" class = "row task-list-items p-2">
+                    <div id = "task-list-one" class = "row task-list-items p-1">
                         @if(!empty($pfes) && ($pfes->count()))
                             @foreach($pfes as $data)
-                                <div class = " col-md-5 card mb-0 mx-auto">
+                                <div class = " col-md-5 card mb-0" style = "margin-left:55px">
                                     <div class = "card-body p-3">
                                         <small class = "float-end text-muted text-capitalize mt-1">
                                             <?php
@@ -80,8 +100,8 @@
                                                         <i class = "mdi mdi-pencil me-1"></i>
                                                         Modifier
                                                     </a>
-                                                    <a href = "" class = "dropdown-item">
-                                                        <i class = "mdi mdi-pencil me-1"></i>
+                                                    <a href = "javascript:void(0)" class = "dropdown-item" onclick = "questionSupprimerPfe({{$data->getIdPfeAttribute()}})">
+                                                        <i class = "mdi mdi-delete me-1"></i>
                                                         Supprimer
                                                     </a>
                                                     <a href = "" class = "dropdown-item">

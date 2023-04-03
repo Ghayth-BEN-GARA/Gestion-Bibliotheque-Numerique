@@ -44,7 +44,7 @@
 
         public function gestionSupprimerAnneeUniversitaire(Request $request){
             if($this->deleteAnneeUniversitaire($request->input("id_annee_universitaire"))){
-                return back()->with("success", "Nous sommes très heureux de vous informer que cette année universitaire a été supprimé avec succès.");
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette année universitaire a été supprimée avec succès.");
             }
 
             else{

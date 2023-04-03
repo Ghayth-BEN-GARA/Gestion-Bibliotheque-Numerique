@@ -69,9 +69,7 @@
                 <div class = "collapse" id = "pfes">
                     <ul class = "side-nav-second-level">
                         <li>
-                            @if(auth()->user()->getRoleUserAttribute() == "Bibliothécaire")
-                                <a href = "{{url('/liste-pfes')}}">Gérer</a>
-                            @endif
+                            <a href = "{{url('/liste-pfes')}}">Gérer</a>
                         </li>       
                     </ul>
                 </div>
