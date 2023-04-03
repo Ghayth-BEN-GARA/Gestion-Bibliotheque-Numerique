@@ -55,5 +55,14 @@
         public function deleteAnneeUniversitaire($id_annee_universitaire){
             return AnneeUniversitaire::where("id_annee_universitaire", "=", $id_annee_universitaire)->delete();
         }
+
+        public function ouvrirAnneeUniversitaire(Request $request){
+            $annee = $this->getInformationsAnneeUniversitaire($request->input("id_annee_universitaire"));
+            return view("AnneesUniversitaires.annee_universitaire", compact("annee"));
+        }
+
+        public function getInformationsAnneeUniversitaire($id_annee_universitaire){
+            return AnneeUniversitaire::where("id_annee_universitaire", "=", $id_annee_universitaire)->first();
+        }
     }
 ?>
