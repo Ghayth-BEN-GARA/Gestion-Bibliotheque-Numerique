@@ -192,7 +192,11 @@
             $user = null;
             $links = $this->getLinksReseauxSociaux($request->input("id_user"));
 
-            if($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
+            if(!$this->verifierSiUserExist($request->input("id_user"))){
+                $user = null;
+            }
+
+            elseif($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
                 $user = $this->getInformationsUserEtudiant($request->input("id_user"));
             }
 
@@ -226,15 +230,23 @@
         public function ouvrirEditUser(Request $request){
             $user = null;
 
-            if($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
+            if(!$this->verifierSiUserExist($request->input("id_user"))){
+                $user = null;
+            }
+
+            elseif($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Étudiant"){
                 $user = $this->getInformationsUserEtudiant($request->input("id_user"));
             }
 
-            else{
+            elseif($this->getInformationsUser($request->input("id_user"))->getRoleUserAttribute() == "Enseignant"){
                 $user = $this->getInformationsUserEnseignant($request->input("id_user"));
             }
             
             return view("Users.edit_user", compact("user"));
+        }
+
+        public function verifierSiUserExist($id_user){
+            return User::where("id_user", "=", $id_user)->exists();
         }
 
         public function gestionUpdateEtudiant(Request $request){
