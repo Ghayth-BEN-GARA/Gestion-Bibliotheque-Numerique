@@ -75,11 +75,11 @@
                 return back()->with("erreur_debut", "Nous sommes désolés de vous informer que cette année universitaire est déjà créé.");
             }
 
-            else if($request->fin <> $request->debut + 1){
+            elseif($request->fin <> $request->debut + 1){
                 return back()->with("erreur_fin", "Nous sommes désolés de vous informer que la date de fin entrée n'est pas valide.");
             }
 
-            else if($this->updateAnneeUniversitaire($request->input('id_annee_universitaire'), $request->debut, $request->fin)){
+            elseif($this->updateAnneeUniversitaire($request->input('id_annee_universitaire'), $request->debut, $request->fin)){
                 return back()->with("success", "Nous sommes très heureux de vous informer que cette année unviversitaire a été modifié avec succès.");
             }
 

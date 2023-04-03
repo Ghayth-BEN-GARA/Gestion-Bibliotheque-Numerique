@@ -60,4 +60,6 @@
     Route::get("/edit-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirEditAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
     Route::post("/modifier-annee-univeritaire",[AnneeUniversitaireController::class,"gestionModifierAnneeUniversitaire"]);
     Route::get("/liste-pfes",[PfeController::class,"ouvrirListePfes"])->middleware("session_not_exist");
+    Route::get("/add-pfe",[PfeController::class,"ouvrirAddPfe"])->middleware("session_not_bibliothecaire");
+    Route::post("/creer-pfe",[PfeController::class,"gestionCreerPfe"]);
 ?>
