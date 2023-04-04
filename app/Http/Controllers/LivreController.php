@@ -39,7 +39,7 @@
             $filename_image = time().$image->getClientOriginalName();
             $path = $image->move('images_livres', $filename_image);
 
-            $livre->setImageLivreAttribute($image);
+            $livre->setImageLivreAttribute($path);
 
             return $livre->save();
         }
