@@ -92,7 +92,7 @@
                                                 <div class = "row mt-3">
                                                     <div class = "col-sm-6"></div>
                                                     <div class = "col-sm-6 text-end">
-                                                        <button type = "submit" class = "btn btn-primary">Créer</button>
+                                                        <button type = "submit" class = "btn btn-primary">Modifier</button>
                                                     </div>
                                                 </div>
                                             </form>

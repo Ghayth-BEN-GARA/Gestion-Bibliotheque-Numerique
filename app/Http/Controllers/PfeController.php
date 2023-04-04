@@ -71,5 +71,47 @@
             $pfe = $this->getInformationsPfe($request->input("id_pfe"));
             return view("Pfes.pfe", compact("pfe"));
         }
+
+        public function ouvrirEditPfe(Request $request){
+            $pfe = $this->getInformationsPfe($request->input("id_pfe"));
+            $liste_annees_universitaires = $this->getListeAnneesUniversitaires();
+            return view("Pfes.edit_pfe", compact("pfe", "liste_annees_universitaires"));
+        }
+
+        public function gestionModifierPfe(Request $request){
+            if(is_null($request->annee_universitaire) || $request->annee_universitaire == "#"){
+                return back()->with("erreur_annee", "Vous devez sélectionner l'année universitaire.");
+            }
+
+            elseif($this->modifierPfe($request->titre, $request->description, $request->pdf, $request->annee_universitaire, $request->id_pfe)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que ce pfe a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier ce pfe pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierPfe($titre, $description, $pdf, $annee_universitaire, $id_pfe){
+            if(is_null($pdf)){
+                return Pfe::where("id_pfe", "=", $id_pfe)->update([
+                    "titre" => $titre,
+                    "description" => $description,
+                    "id_annee_universitaire" => $annee_universitaire
+                ]);
+            }
+
+            else{
+                $filename_pdf = time().$pdf->getClientOriginalName();
+                $path = $pdf->move('pdf_pfe', $filename_pdf);
+
+                return Pfe::where("id_pfe", "=", $id_pfe)->update([
+                    "titre" => $titre,
+                    "description" => $description,
+                    "id_annee_universitaire" => $annee_universitaire,
+                    "pdf" => $path
+                ]);
+            }
+        }
     }
 ?>

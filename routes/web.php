@@ -65,4 +65,6 @@
     Route::get("/delete-pfe",[PfeController::class,"gestionDeletePfe"]);
     Route::get("/download-pfe",[PfeController::class,"downloadPdf"]);
     Route::get("/pfe",[PfeController::class,"ouvrirPfe"])->middleware("session_not_exist");
+    Route::get("/edit-pfe",[PfeController::class,"ouvrirEditPfe"])->middleware("session_not_bibliothecaire");
+    Route::post("/modifier-pfe",[PfeController::class,"gestionModifierPfe"]);
 ?>

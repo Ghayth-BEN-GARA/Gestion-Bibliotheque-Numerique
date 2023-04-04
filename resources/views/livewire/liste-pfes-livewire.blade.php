@@ -96,7 +96,7 @@
                                                     Consulter
                                                 </a>
                                                 @if(auth()->user()->getRoleUserAttribute() == "Bibliothécaire")
-                                                    <a href = "" class = "dropdown-item">
+                                                    <a href = "{{url('/edit-pfe?id_pfe='.$data->getIdPfeAttribute())}}" class = "dropdown-item">
                                                         <i class = "mdi mdi-pencil me-1"></i>
                                                         Modifier
                                                     </a>
