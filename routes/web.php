@@ -7,6 +7,7 @@
     use App\Http\Controllers\UserController;
     use App\Http\Controllers\AnneeUniversitaireController;
     use App\Http\Controllers\PfeController;
+    use App\Http\Controllers\LivreController;
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -67,4 +68,6 @@
     Route::get("/pfe",[PfeController::class,"ouvrirPfe"])->middleware("session_not_exist");
     Route::get("/edit-pfe",[PfeController::class,"ouvrirEditPfe"])->middleware("session_not_bibliothecaire");
     Route::post("/modifier-pfe",[PfeController::class,"gestionModifierPfe"]);
+    Route::get("/liste-livres",[LivreController::class,"ouvrirListeLivres"])->middleware("session_not_bibliothecaire");
+    Route::get("/add-livre",[LivreController::class,"ouvrirAddLivre"])->middleware("session_not_bibliothecaire");
 ?>

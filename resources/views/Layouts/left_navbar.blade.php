@@ -68,7 +68,7 @@
                     <div class = "collapse" id = "livres">
                         <ul class = "side-nav-second-level">
                             <li>
-                                <a href = "#">Gérer</a>
+                                <a href = "{{url('/liste-livres')}}">Gérer</a>
                             </li>       
                         </ul>
                     </div>

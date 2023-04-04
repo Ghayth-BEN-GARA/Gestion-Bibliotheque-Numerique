@@ -124,7 +124,7 @@
                                 </div>
                             @endforeach
                         @else
-                            <p class = "text-center h5 mt-4">Aucun pfe actuellement trouvé.</p>
+                            <p class = "text-center mt-4">Aucun projet de fin d'étude actuellement trouvé.</p>
                         @endif
                     </div>
                 </div>
