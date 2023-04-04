@@ -96,5 +96,7 @@
         Route::get('/add-livre', 'ouvrirAddLivre')->middleware("session_not_bibliothecaire");
         Route::post('/creer-livre', 'gestionCreerLivre');
         Route::get('/delete-livre', 'gestionDeleteLivre');
+        Route::get('/edit-livre', 'ouvrirEditLivre')->middleware("session_not_bibliothecaire");
+        Route::post('/modifier-livre', 'gestionModifierLivre');
     });
 ?>

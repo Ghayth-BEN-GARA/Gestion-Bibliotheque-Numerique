@@ -17,13 +17,13 @@
             @foreach($livres as $data)
                 <div class = "col-md-6 col-lg-3">
                     <div class = "card d-block">
-                        <img class = "card-img-top" src = "{{URL::asset($data->getImageLivreAttribute())}}" alt = "Image de livre" height = "300">
+                        <img class = "card-img-top mt-2" src = "{{URL::asset($data->getImageLivreAttribute())}}" alt = "Image de livre" height = "250">
                         <div class = "card-body">
                             <h5 class = "card-title">{{$data->getTitreLivreAttribute()}}</h5>
                             <p class = "card-text">{{$data->getAuteurLivreAttribute()}}</p>
                         </div>
                         <div class = "card-body">
-                            <a href = "#" class = "card-link text-custom" style = "color:#000">
+                            <a href = "{{url('/edit-livre?id_livre='.$data->getIdLivreAttribute())}}" class = "card-link text-custom" style = "color:#000">
                                 Modifier
                             </a>
                             <a href = "javascript:void(0)" class = "card-link text-custom" style = "color:#000" onclick = "questionSupprimerLivre({{$data->getIdLivreAttribute()}})">

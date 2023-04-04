@@ -57,5 +57,54 @@
         public function deleteLivre($id_livre){
             return Livre::where("id_livre", "=", $id_livre)->delete();
         }
+
+        public function ouvrirEditLivre(Request $request){
+            $livre = $this->getInformationsLivre($request->input("id_livre"));
+            return view("Livres.edit_livre", compact("livre"));
+        }
+
+        public function getInformationsLivre($id_livre){
+            return Livre::where("id_livre", "=", $id_livre)->first();
+        }
+
+        public function gestionModifierLivre(Request $request){
+            if($this->verifierSiCodeLivreNonActuelExist($request->code, $request->input("id_livre"))){
+                return back()->with("erreur_code", "Nous sommes désolés de vous informer que ce code est utilisé pour créer un autre livre.");
+            }
+
+            elseif($this->modifierLivre($request->titre, $request->auteur, $request->code, $request->image, $request->input("id_livre"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier ce livre pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function verifierSiCodeLivreNonActuelExist($code, $id_livre){
+            return Livre::where("code_livre", "=", $code)->where("id_livre", "<>", $id_livre)->exists();
+        }
+
+        public function modifierLivre($titre, $auteur, $code, $image, $id_livre){
+            if(is_null($image)){
+                return Livre::where("id_livre", "=", $id_livre)->update([
+                    "titre_livre" => $titre,
+                    "auteur_livre" => $auteur,
+                    "code_livre" => $code
+                ]);
+            }
+
+            else{
+                $filename_image = time().$image->getClientOriginalName();
+                $path = $image->move('images_livres', $filename_image);
+
+                return Livre::where("id_livre", "=", $id_livre)->update([
+                    "titre_livre" => $titre,
+                    "auteur_livre" => $auteur,
+                    "code_livre" => $code,
+                    "image_livre" => $path
+                ]);
+            }
+        }
     }
 ?>
