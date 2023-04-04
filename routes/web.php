@@ -94,5 +94,6 @@
     Route::controller(LivreController::class)->group(function() {
         Route::get('/liste-livres', 'ouvrirListeLivres')->middleware("session_not_bibliothecaire");
         Route::get('/add-livre', 'ouvrirAddLivre')->middleware("session_not_bibliothecaire");
+        Route::post('/creer-livre', 'gestionCreerLivre');
     });
 ?>
