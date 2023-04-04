@@ -59,6 +59,20 @@
                         </ul>
                     </div>
                 </li>
+                <li class = "side-nav-item">
+                    <a data-bs-toggle = "collapse" href = "#livres" aria-expanded = "false" aria-controls = "livres" class = "side-nav-link">
+                        <i class = "uil-book-alt"></i>
+                        <span> Livres </span>
+                        <span class = "menu-arrow"></span>
+                    </a>
+                    <div class = "collapse" id = "livres">
+                        <ul class = "side-nav-second-level">
+                            <li>
+                                <a href = "#">Gérer</a>
+                            </li>       
+                        </ul>
+                    </div>
+                </li>
             @endif
             <li class = "side-nav-item">
                 <a data-bs-toggle = "collapse" href = "#pfes" aria-expanded = "false" aria-controls = "pfes" class = "side-nav-link">
