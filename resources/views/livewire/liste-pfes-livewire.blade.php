@@ -91,7 +91,7 @@
                                                 <i class = "mdi mdi-dots-vertical font-18"></i>
                                             </a>
                                             <div class = "dropdown-menu dropdown-menu-end">
-                                                <a href = "" class = "dropdown-item">
+                                                <a href = "{{url('/pfe?id_pfe='.$data->getIdPfeAttribute())}}" class = "dropdown-item">
                                                     <i class = "mdi mdi-eye me-1"></i>
                                                     Consulter
                                                 </a>

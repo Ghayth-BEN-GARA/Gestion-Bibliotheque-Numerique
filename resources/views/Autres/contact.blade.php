@@ -167,6 +167,26 @@
                                                     </div>
                                                 </div>
                                             </div>
+                                            <div class = "mapouter mt-3">
+                                                <div class = "gmap_canvas">
+                                                    <iframe width = "100%" height = "500px" id = "gmap_canvas" src = "https://www.google.com/maps/embed/v1/place?q=Polytechnique+sfax+Ipsas,+Sfax,+Tunisie&key=AIzaSyBFw0Qbyq9zTFTd-tUY6dZWTgaQzuU17R8" frameborder = "0" scrolling = "no" marginheight = "0" marginwidth = "0"></iframe>
+                                                    <br>
+                                                    <style>
+                                                        .mapouter{
+                                                            position:relative;
+                                                            text-align:right;
+                                                            height:100%;
+                                                            width:100%;
+                                                        }
+                                                        .gmap_canvas {
+                                                            overflow:hidden;
+                                                            background:none!important;
+                                                            height:100%;
+                                                            width:100%;
+                                                        }
+                                                    </style>
+                                                </div>
+                                            </div>
                                         </div>
                                     </div>
                                 </div>

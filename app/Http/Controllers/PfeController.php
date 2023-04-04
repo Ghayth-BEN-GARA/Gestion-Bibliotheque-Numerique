@@ -62,7 +62,14 @@
         }
 
         public function getInformationsPfe($id_pfe){
-            return Pfe::where("id_pfe", "=", $id_pfe)->first();
+            return Pfe::where("id_pfe", "=", $id_pfe)
+            ->join("annees_universitaires", "annees_universitaires.id_annee_universitaire", "=", "pfes.id_annee_universitaire")
+            ->first();
+        }
+
+        public function ouvrirPfe(Request $request){
+            $pfe = $this->getInformationsPfe($request->input("id_pfe"));
+            return view("Pfes.pfe", compact("pfe"));
         }
     }
 ?>
