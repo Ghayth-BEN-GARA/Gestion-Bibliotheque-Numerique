@@ -26,7 +26,7 @@
                             <a href = "#" class = "card-link text-custom" style = "color:#000">
                                 Modifier
                             </a>
-                            <a href = "#" class = "card-link text-custom" style = "color:#000">
+                            <a href = "javascript:void(0)" class = "card-link text-custom" style = "color:#000" onclick = "questionSupprimerLivre({{$data->getIdLivreAttribute()}})">
                                 Supprimer
                             </a>
                         </div>

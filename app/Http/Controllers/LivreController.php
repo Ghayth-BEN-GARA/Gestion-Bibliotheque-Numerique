@@ -43,5 +43,19 @@
 
             return $livre->save();
         }
+
+        public function gestionDeleteLivre(Request $request){
+            if($this->deleteLivre($request->input("id_livre"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été supprimé avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas supprimer ce livre pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function deleteLivre($id_livre){
+            return Livre::where("id_livre", "=", $id_livre)->delete();
+        }
     }
 ?>
