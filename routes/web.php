@@ -8,6 +8,7 @@
     use App\Http\Controllers\AnneeUniversitaireController;
     use App\Http\Controllers\PfeController;
     use App\Http\Controllers\LivreController;
+
     /*
     |--------------------------------------------------------------------------
     | Web Routes
@@ -18,56 +19,80 @@
     | be assigned to the "web" middleware group. Make something great!
     |
     */
-    Route::get("/",[AuthentificationController::class,"ouvrirLogin"])->middleware("session_exist");
-    Route::post("/login-user",[AuthentificationController::class,"gestionLoginUser"]);
-    Route::get("/dashboard",[DashboardController::class,"ouvrirDashboard"])->middleware("session_not_exist");
-    Route::get("/forget-password",[AuthentificationController::class,"ouvrirForgetPassword"])->middleware("session_exist");
-    Route::post("/send-link-reset-compte",[AuthentificationController::class,"gestionEnvoyerLienForgetPassword"]);
-    Route::get("/reset-password",[AuthentificationController::class,"ouvrirResetPassword"])->middleware("session_exist");
-    Route::post("/reset-compte",[AuthentificationController::class,"gestionResetCompte"]);
-    Route::get("/logout",[AuthentificationController::class,"gestionLogout"]);
-    Route::get("/404",[DashboardController::class,"ouvrir404"]);
-    Route::get("/update-type-mode",[DashboardController::class,"modifierTypeMode"]);
-    Route::get("/update-status-user",[ProfilController::class,"modifierStatusUser"]);
-    Route::get("/journal",[JournalController::class,"ouvrirJournal"])->middleware("session_not_exist");
-    Route::get("/delete-journal-authentfication",[JournalController::class,"gestionSupprimerJournal"]);
-    Route::get("/help",[DashboardController::class,"ouvrirAide"])->middleware("session_not_exist");
-    Route::get("/contact",[DashboardController::class,"ouvrirContact"])->middleware("session_not_exist");
-    Route::get("/delete-compte",[ProfilController::class,"gestionSupprimerCompte"]);
-    Route::post("/send-mail-contact",[DashboardController::class,"gestionEnvoyerMailContact"]);
-    Route::get("/profil",[ProfilController::class,"ouvrirProfil"])->middleware("session_not_exist");
-    Route::get("/edit-photo-profil",[ProfilController::class,"ouvrirEditPhotoProfil"])->middleware("session_not_exist");
-    Route::post("/modifier-photo-profil",[ProfilController::class,"gestionModifierPhotoDeProfil"]);
-    Route::post("/modifier-informations-basic",[ProfilController::class,"gestionModifierInformationsBasique"]);
-    Route::post("/modifier-reseaux-sociaux",[ProfilController::class,"gestionModifierReseauxSociaux"]);
-    Route::post("/modifier-email",[ProfilController::class,"gestionModifierEmail"]);
-    Route::post("/modifier-password",[ProfilController::class,"gestionModifierPassword"]);
-    Route::get("/liste-users",[UserController::class,"ouvrirListeUsers"])->middleware("session_not_bibliothecaire");
-    Route::get("/add-user",[UserController::class,"ouvrirAddUser"])->middleware("session_not_bibliothecaire");
-    Route::post("/creer-etudiant",[UserController::class,"gestionCreerEtudiant"]);
-    Route::post("/modifier-etudiant",[ProfilController::class,"gestionModifierEtudiant"]);
-    Route::post("/creer-enseignant",[UserController::class,"gestionCreerEnseignant"]);
-    Route::post("/modifier-enseignant",[ProfilController::class,"gestionModifierEnseignant"]);
-    Route::get("/delete-user",[UserController::class,"gestionSupprimerUser"]);
-    Route::get("/user",[UserController::class,"ouvrirUser"])->middleware("session_not_bibliothecaire");
-    Route::get("/edit-user",[UserController::class,"ouvrirEditUser"])->middleware("session_not_bibliothecaire");
-    Route::post("/update-etudiant",[UserController::class,"gestionUpdateEtudiant"]);
-    Route::post("/update-enseignant",[UserController::class,"gestionUpdateEnseignant"]);
-    Route::get("/liste-annees-universitaire",[AnneeUniversitaireController::class,"ouvrirListeAnneesUniversitaire"])->middleware("session_not_bibliothecaire");
-    Route::get("/add-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirAddAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
-    Route::post("/creer-annee-univeritaire",[AnneeUniversitaireController::class,"gestionCreerAnneeUniversitaire"]);
-    Route::get("/delete-annee-universitaire",[AnneeUniversitaireController::class,"gestionSupprimerAnneeUniversitaire"]);
-    Route::get("/annee-universitaire",[AnneeUniversitaireController::class,"ouvrirAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
-    Route::get("/edit-annee-universitaire",[AnneeUniversitaireController::class,"ouvrirEditAnneeUniversitaire"])->middleware("session_not_bibliothecaire");
-    Route::post("/modifier-annee-univeritaire",[AnneeUniversitaireController::class,"gestionModifierAnneeUniversitaire"]);
-    Route::get("/liste-pfes",[PfeController::class,"ouvrirListePfes"])->middleware("session_not_exist");
-    Route::get("/add-pfe",[PfeController::class,"ouvrirAddPfe"])->middleware("session_not_bibliothecaire");
-    Route::post("/creer-pfe",[PfeController::class,"gestionCreerPfe"]);
-    Route::get("/delete-pfe",[PfeController::class,"gestionDeletePfe"]);
-    Route::get("/download-pfe",[PfeController::class,"downloadPdf"]);
-    Route::get("/pfe",[PfeController::class,"ouvrirPfe"])->middleware("session_not_exist");
-    Route::get("/edit-pfe",[PfeController::class,"ouvrirEditPfe"])->middleware("session_not_bibliothecaire");
-    Route::post("/modifier-pfe",[PfeController::class,"gestionModifierPfe"]);
-    Route::get("/liste-livres",[LivreController::class,"ouvrirListeLivres"])->middleware("session_not_bibliothecaire");
-    Route::get("/add-livre",[LivreController::class,"ouvrirAddLivre"])->middleware("session_not_bibliothecaire");
+
+    Route::controller(AuthentificationController::class)->group(function() {
+        Route::get('/', 'ouvrirLogin')->middleware("session_exist");
+        Route::post('/login-user', 'gestionLoginUser');
+        Route::get('/forget-password', 'ouvrirForgetPassword')->middleware("session_exist");
+        Route::post('/send-link-reset-compte', 'gestionEnvoyerLienForgetPassword');
+        Route::get('/reset-password', 'ouvrirResetPassword')->middleware("session_exist");
+        Route::post('/reset-compte', 'gestionResetCompte');
+        Route::get('/logout', 'gestionLogout');
+    });
+
+    Route::controller(DashboardController::class)->group(function() {
+        Route::get('/dashboard', 'ouvrirDashboard')->middleware("session_not_exist");
+        Route::get('/404', 'ouvrir404');
+        Route::get('/update-type-mode', 'modifierTypeMode');
+        Route::get('/help', 'ouvrirAide')->middleware("session_not_exist");
+        Route::get('/contact', 'ouvrirContact')->middleware("session_not_exist");
+        Route::post('/send-mail-contact', 'gestionEnvoyerMailContact');
+    });
+
+    Route::controller(ProfilController::class)->group(function() {
+        Route::get('/update-status-user', 'modifierStatusUser');
+        Route::get('/delete-compte', 'gestionSupprimerCompte');
+        Route::get('/profil', 'ouvrirProfil')->middleware("session_not_exist");
+        Route::get('/edit-photo-profil', 'ouvrirEditPhotoProfil')->middleware("session_not_exist");
+        Route::post('/modifier-photo-profil', 'gestionModifierPhotoDeProfil');
+        Route::post('/modifier-informations-basic', 'gestionModifierInformationsBasique');
+        Route::post('/modifier-reseaux-sociaux', 'gestionModifierReseauxSociaux');
+        Route::post('/modifier-email', 'gestionModifierEmail');
+        Route::post('/modifier-password', 'gestionModifierPassword');
+    });
+
+    Route::controller(JournalController::class)->group(function() {
+        Route::get('/journal', 'ouvrirJournal')->middleware("session_not_exist");
+        Route::get('/delete-journal-authentfication', 'gestionSupprimerJournal');
+    });
+
+    Route::controller(UserController::class)->group(function() {
+        Route::get('/liste-users', 'ouvrirListeUsers')->middleware("session_not_bibliothecaire");
+        Route::get('/add-user', 'ouvrirAddUser')->middleware("session_not_bibliothecaire");
+        Route::post('/creer-etudiant', 'gestionCreerEtudiant');
+        Route::post('/modifier-etudiant', 'gestionModifierEtudiant');
+        Route::post('/creer-enseignant', 'gestionCreerEnseignant');
+        Route::post('/modifier-enseignant', 'gestionModifierEnseignant');
+        Route::get('/delete-user', 'gestionSupprimerUser');
+        Route::get('/user', 'ouvrirUser')->middleware("session_not_bibliothecaire");
+        Route::get('/edit-user', 'ouvrirEditUser')->middleware("session_not_bibliothecaire");
+        Route::post('/update-etudiant', 'gestionUpdateEtudiant');
+        Route::post('/update-enseignant', 'gestionUpdateEnseignant');
+    });
+
+    Route::controller(AnneeUniversitaireController::class)->group(function() {
+        Route::get('/liste-annees-universitaire', 'ouvrirListeAnneesUniversitaire')->middleware("session_not_bibliothecaire");
+        Route::get('/add-annee-universitaire', 'ouvrirAddAnneeUniversitaire')->middleware("session_not_bibliothecaire");
+        Route::post('/creer-annee-univeritaire', 'gestionCreerAnneeUniversitaire');
+        Route::get('/delete-annee-universitaire', 'gestionSupprimerAnneeUniversitaire');
+        Route::get('/annee-universitaire', 'ouvrirAnneeUniversitaire')->middleware("session_not_bibliothecaire");
+        Route::get('/edit-annee-universitaire', 'ouvrirEditAnneeUniversitaire')->middleware("session_not_bibliothecaire");
+        Route::post('/modifier-annee-univeritaire', 'gestionModifierAnneeUniversitaire');
+    });
+    
+    Route::controller(PfeController::class)->group(function() {
+        Route::get('/liste-pfes', 'ouvrirListePfes')->middleware("session_not_exist");
+        Route::get('/add-pfe', 'ouvrirAddPfe')->middleware("session_not_bibliothecaire");
+        Route::post('/creer-pfe', 'gestionCreerPfe');
+        Route::get('/delete-pfe', 'gestionDeletePfe');
+        Route::get('/download-pfe', 'downloadPdf');
+        Route::get('/pfe', 'ouvrirPfe')->middleware("session_not_exist");
+        Route::get('/edit-pfe', 'ouvrirEditPfe')->middleware("session_not_bibliothecaire");
+        Route::post('/modifier-pfe', 'gestionModifierPfe');
+    });
+    
+    Route::controller(LivreController::class)->group(function() {
+        Route::get('/liste-livres', 'ouvrirListeLivres')->middleware("session_not_bibliothecaire");
+        Route::get('/add-livre', 'ouvrirAddLivre')->middleware("session_not_bibliothecaire");
+    });
 ?>
