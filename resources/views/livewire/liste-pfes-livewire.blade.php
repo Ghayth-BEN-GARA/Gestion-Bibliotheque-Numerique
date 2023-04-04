@@ -67,7 +67,7 @@
                                         @if($data->debut < date("Y") && $data->fin < date("Y"))
                                             <span class = "badge bg-danger p-2">Année universitaire dépassée</span>
                                         @elseif($data->debut < date("Y") && $data->fin == date("Y"))
-                                            <span class = "badge bg-danger p-2">Année universitaire dépassée</span>
+                                            <span class = "badge bg-success p-2">Année universitaire actuelle</span>
                                         @elseif($data->debut == date("Y") && $data->fin > date("Y"))
                                             <span class = "badge bg-success p-2">Année universitaire actuelle</span>
                                         @else
