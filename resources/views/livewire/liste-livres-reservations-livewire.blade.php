@@ -20,7 +20,7 @@
                                     <p class = "card-text">{{$data->getDescriptionLivreAttribute()}}</p>
                                 </div>
                                 <p class = "card-footer">
-                                    <a href = "{{url('/add-reservation?id_reservation='.$data->getIdLivreAttribute())}}" class = "btn btn-primary">Réserver</a>
+                                    <a href = "{{url('/add-reservation?id_livre='.$data->getIdLivreAttribute())}}" class = "btn btn-primary">Réserver</a>
                                 </p>
                             </div>
                         @endforeach

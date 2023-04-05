@@ -2,7 +2,7 @@
 <html lang = "en">
     <head>
         @include("Layouts.head_site")
-        <title>Nouvel Livre | Bibliothèque</title>
+        <title>Nouvel livre | Bibliothèque</title>
     </head>
     @include("Layouts.body_type_mode")
         <div class = "wrapper">
@@ -19,10 +19,10 @@
                                             <li class = "breadcrumb-item">
                                                 <a href = "{{url('/dashboard')}}">Dashboard</a>
                                             </li>
-                                            <li class = "breadcrumb-item active">Nouvel Livre</li>
+                                            <li class = "breadcrumb-item active">Nouvel livre</li>
                                         </ol>
                                     </div>
-                                    <h4 class = "page-title">Nouvel Livre</h4>
+                                    <h4 class = "page-title">Nouvel livre</h4>
                                 </div>
                             </div>
                         </div>
@@ -30,7 +30,7 @@
                             <div class = "col-12">
                                 <div class = "card">
                                     <div class = "card-body">
-                                        <h4 class = "header-title">Nouvel Livre</h4>
+                                        <h4 class = "header-title">Nouvel livre</h4>
                                         <p class = "text-muted font-14">
                                             Créez un nouvel livre en ajoutant les informations requises pour un livre.
                                         </p>
