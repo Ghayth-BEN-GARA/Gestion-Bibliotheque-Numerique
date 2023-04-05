@@ -99,6 +99,12 @@
                                                         @endif
                                                     </div>
                                                 </div>
+                                                <div class = "row">
+                                                    <div class = "col-md-12">
+                                                        <label for = "description" class = "form-label">Description</label>
+                                                        <textarea class = "form-control" name = "description" id = "description" placeholder = "Saisissez le la description.." required>{{$livre->getDescriptionLivreAttribute()}}</textarea>
+                                                    </div>
+                                                </div>
                                                 <input type = "hidden" name = "id_livre" id = "id_livre" value = "{{$_GET['id_livre']}}" required>
                                                 <div class = "row mt-3">
                                                     <div class = "col-sm-6"></div>

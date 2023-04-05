@@ -17,7 +17,7 @@
                 return back()->with("erreur_code", "Nous sommes désolés de vous informer que ce code est utilisé pour créer un autre livre.");
             }
 
-            elseif($this->creerLivre($request->titre, $request->auteur, $request->code, $request->image)){
+            elseif($this->creerLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description)){
                 return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été crée avec succès.");
             }
 
@@ -30,7 +30,7 @@
             return Livre::where("code_livre", "=", $code)->exists();
         }
 
-        public function creerLivre($titre, $auteur, $code, $image){
+        public function creerLivre($titre, $auteur, $code, $image, $description){
             $livre = new Livre();
             $livre->setCodeLivreAttribute($code);
             $livre->setTitreLivreAttribute($titre);
@@ -40,6 +40,7 @@
             $path = $image->move('images_livres', $filename_image);
 
             $livre->setImageLivreAttribute($path);
+            $livre->setDescriptionLivreAttribute($description);
 
             return $livre->save();
         }
@@ -72,7 +73,7 @@
                 return back()->with("erreur_code", "Nous sommes désolés de vous informer que ce code est utilisé pour créer un autre livre.");
             }
 
-            elseif($this->modifierLivre($request->titre, $request->auteur, $request->code, $request->image, $request->input("id_livre"))){
+            elseif($this->modifierLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description, $request->input("id_livre"))){
                 return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été modifié avec succès.");
             }
 
@@ -85,12 +86,13 @@
             return Livre::where("code_livre", "=", $code)->where("id_livre", "<>", $id_livre)->exists();
         }
 
-        public function modifierLivre($titre, $auteur, $code, $image, $id_livre){
+        public function modifierLivre($titre, $auteur, $code, $image, $description, $id_livre){
             if(is_null($image)){
                 return Livre::where("id_livre", "=", $id_livre)->update([
                     "titre_livre" => $titre,
                     "auteur_livre" => $auteur,
-                    "code_livre" => $code
+                    "code_livre" => $code,
+                    "description_livre" => $description
                 ]);
             }
 

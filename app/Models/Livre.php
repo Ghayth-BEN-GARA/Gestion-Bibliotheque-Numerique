@@ -18,6 +18,7 @@
             "code_livre",
             "titre_livre",
             "auteur_livre",
+            "description_livre",
             "image_livre"
         ];
 
@@ -47,6 +48,14 @@
 
         public function setAuteurLivreAttribute($value){
             $this->attributes["auteur_livre"] = $value;
+        }
+
+        public function getDescriptionLivreAttribute(){
+            return $this->attributes["description_livre"];
+        }
+
+        public function setDescriptionLivreAttribute($value){
+            $this->attributes["description_livre"] = $value;
         }
 
         public function getImageLivreAttribute(){

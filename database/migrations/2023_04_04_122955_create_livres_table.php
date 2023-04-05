@@ -15,6 +15,7 @@
                 $table->integer("code_livre")->default(0);
                 $table->string("titre_livre", 700)->default("Aucun");
                 $table->string("auteur_livre", 700)->default("Aucun");
+                $table->string("description_livre", 999)->default("Aucun");
                 $table->string("image_livre", 999)->default("Aucun");
             });
         }

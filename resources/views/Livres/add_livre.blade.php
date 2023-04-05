@@ -88,6 +88,12 @@
                                                     @endif
                                                 </div>
                                             </div>
+                                            <div class = "row">
+                                                <div class = "col-md-12">
+                                                    <label for = "description" class = "form-label">Description</label>
+                                                    <textarea class = "form-control" name = "description" id = "description" placeholder = "Saisissez le la description.." required></textarea>
+                                                </div>
+                                            </div>
                                             <div class = "row mt-3">
                                                 <div class = "col-sm-6"></div>
                                                 <div class = "col-sm-6 text-end">
