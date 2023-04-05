@@ -4,6 +4,7 @@
     use Livewire\WithPagination;
     use Illuminate\Pagination\Paginator;
     use App\Models\Livre;
+    use App\Models\Reservation;
 
     class ListeLivresReservationsLivewire extends Component{
         public $search_livres;
@@ -31,6 +32,13 @@
             Paginator::currentPageResolver(function(){
                 return $this->currentPage;
             });
+        }
+
+        public function getInformationsReservationLivre($id_livre){
+            return Reservation::where("id_livre", "=", $id_livre)
+            ->where("id_user", "=", auth()->user()->getIdUserAttribute())
+            ->where("date_retour", ">", now()->format("Y-m-d"))
+            ->count();
         }
     }
 ?>
