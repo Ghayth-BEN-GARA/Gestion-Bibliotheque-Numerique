@@ -88,6 +88,22 @@
                     </ul>
                 </div>
             </li>
+            @if(auth()->user()->getRoleUserAttribute() == "Étudiant" || auth()->user()->getRoleUserAttribute() == "Enseignant")
+                    <li class = "side-nav-item">
+                        <a data-bs-toggle = "collapse" href = "#livres" aria-expanded = "false" aria-controls = "livres" class = "side-nav-link">
+                            <i class = "uil-book-alt"></i>
+                            <span> Livres </span>
+                            <span class = "menu-arrow"></span>
+                        </a>
+                        <div class = "collapse" id = "livres">
+                            <ul class = "side-nav-second-level">
+                                <li>
+                                    <a href = "{{url('/liste-livres-reservations')}}">Consulter</a>
+                                </li>       
+                            </ul>
+                        </div>
+                    </li>
+            @endif
         </ul>
     </div>
 </div>
