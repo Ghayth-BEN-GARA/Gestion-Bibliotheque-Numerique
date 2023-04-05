@@ -8,6 +8,7 @@
     use App\Http\Controllers\AnneeUniversitaireController;
     use App\Http\Controllers\PfeController;
     use App\Http\Controllers\LivreController;
+    use App\Http\Controllers\ReservationController;
 
     /*
     |--------------------------------------------------------------------------
@@ -98,5 +99,9 @@
         Route::get('/delete-livre', 'gestionDeleteLivre');
         Route::get('/edit-livre', 'ouvrirEditLivre')->middleware("session_not_bibliothecaire");
         Route::post('/modifier-livre', 'gestionModifierLivre');
+    });
+
+    Route::controller(ReservationController::class)->group(function() {
+        Route::get('/liste-livres-reservations', 'ouvrirListeLivresReservations')->middleware("session_not_etudiant_not_enseignant");
     });
 ?>
