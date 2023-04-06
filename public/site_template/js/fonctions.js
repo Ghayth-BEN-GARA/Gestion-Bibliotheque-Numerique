@@ -263,3 +263,32 @@ function questionSupprimerLivre(id_livre) {
         }
     });
 }
+
+function questionAnnulerReservation(id_reservation) {
+    swal({
+        title: "Réservation",
+        text: "Vous êtes sûr d'annuler cette réservation ?",
+        type: 'warning',
+        showConfirmButton: true,
+        showCancelButton: true,
+        showCloseButton: true,
+        allowOutsideClick: false,
+        confirmButtonColor: '#29409A',
+        confirmButtonText: 'Oui, Je suis sûr !',
+        cancelButtonText: 'Annuler',
+        padding: "2em",
+        width: "515px",
+    })
+
+    .then((result) => {
+        if (result.value) {
+            chargement("Annulation en cours..").then(
+                location.href = "/annuler-reservation?id_reservation="+id_reservation
+            );
+        }
+
+        else if (result.dismiss === swal.DismissReason.cancel) {
+            swal.close();
+        }
+    });
+}

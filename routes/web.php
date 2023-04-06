@@ -105,5 +105,7 @@
         Route::get('/liste-livres-reservations', 'ouvrirListeLivresReservations')->middleware("session_not_etudiant_not_enseignant");
         Route::get('/add-reservation', 'ouvrirAddReservation')->middleware("session_not_etudiant_not_enseignant");
         Route::post('/creer-reservation', 'gestionCreerReservation');
+        Route::get('/mes-reservations', 'ouvrirMesReservation')->middleware("session_not_etudiant_not_enseignant");
+        Route::get('/annuler-reservation', 'gestionAnnulerReservation');
     });
 ?>

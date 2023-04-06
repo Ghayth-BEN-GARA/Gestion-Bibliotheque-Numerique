@@ -41,5 +41,31 @@
 
             return $reservation->save();
         }
+
+        public function ouvrirMesReservation(){
+            $mes_reservations = $this->getListeMesReservations(auth()->user()->getIdUserAttribute());
+            return view("Reservations.mes_reservations", compact("mes_reservations"));
+        }
+
+        public function getListeMesReservations($id_user){
+            return Reservation::join("livres", "livres.id_livre", "=", "reservations.id_livre")
+            ->where("reservations.id_user", "=", $id_user)
+            ->orderBy("date_time_creation_reservation", "desc")
+            ->paginate(10);
+        }
+
+        public function gestionAnnulerReservation(Request $request){
+            if($this->annulerReservation($request->input("id_reservation"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette réservation a été annulée avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas annuler cette réservation pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function annulerReservation($id_reservation){
+            return Reservation::where("id_reservation", "=", $id_reservation)->delete();
+        }
     }
 ?>
