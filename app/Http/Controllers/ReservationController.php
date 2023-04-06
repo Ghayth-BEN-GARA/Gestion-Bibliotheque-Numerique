@@ -101,5 +101,10 @@
                 "date_retour" => $date_retour
             ]);
         }
+
+        public function ouvrirReservation(Request $request){
+            $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
+            return view("reservations.reservation", compact("reservation"));
+        }
     }
 ?>
