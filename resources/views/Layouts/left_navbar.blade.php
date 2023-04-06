@@ -73,6 +73,20 @@
                         </ul>
                     </div>
                 </li>
+                <li class = "side-nav-item">
+                    <a data-bs-toggle = "collapse" href = "#reservations" aria-expanded = "false" aria-controls = "reservations" class = "side-nav-link">
+                        <i class = "uil-book-open"></i>
+                        <span> Mes réservations </span>
+                        <span class = "menu-arrow"></span>
+                    </a>
+                    <div class = "collapse" id = "reservations">
+                        <ul class = "side-nav-second-level">
+                            <li>
+                                <a href = "{{url('/liste-reservations')}}">Gérer</a>
+                            </li>       
+                        </ul>
+                    </div>
+                </li>
             @endif
             <li class = "side-nav-item">
                 <a data-bs-toggle = "collapse" href = "#pfes" aria-expanded = "false" aria-controls = "pfes" class = "side-nav-link">

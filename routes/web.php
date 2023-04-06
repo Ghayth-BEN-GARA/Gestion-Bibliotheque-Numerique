@@ -110,5 +110,6 @@
         Route::get('/edit-reservation', 'ouvrirEditReservation')->middleware("session_not_etudiant_not_enseignant");
         Route::post('/modifier-reservation', 'gestionModifierReservation');
         Route::get('/reservation', 'ouvrirReservation')->middleware("session_not_etudiant_not_enseignant");
+        Route::get('/liste-reservations', 'ouvrirListeReservations')->middleware("session_not_bibliothecaire");
     });
 ?>

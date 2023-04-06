@@ -106,5 +106,9 @@
             $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
             return view("reservations.reservation", compact("reservation"));
         }
+
+        public function ouvrirListeReservations(){
+            return view("reservations.liste_reservations", compact("reservation"));
+        }
     }
 ?>
