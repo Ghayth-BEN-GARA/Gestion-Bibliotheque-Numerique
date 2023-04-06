@@ -37,7 +37,7 @@
         public function getInformationsReservationLivre($id_livre){
             return Reservation::where("id_livre", "=", $id_livre)
             ->where("id_user", "=", auth()->user()->getIdUserAttribute())
-            ->where("date_retour", ">", now()->format("Y-m-d"))
+            ->where("is_returned", "=", false)
             ->count();
         }
     }

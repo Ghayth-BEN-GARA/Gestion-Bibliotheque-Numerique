@@ -32,7 +32,11 @@
                             <h4 class = "mt-0">
                                 <a href = "javascript:void(0)" class = "text-title">{{$data->titre_livre}}</a>
                             </h4>
-                            <div class = "badge bg-success mb-3 p-2">Réservé</div>
+                            @if($data->getIsReturnedAttribute() == "true")
+                                <div class = "badge bg-secondary mb-3 p-2">Retourné</div>
+                            @else
+                                <div class = "badge bg-danger mb-3 p-2">Non retourné</div>
+                            @endif
                             <p class = "text-muted font-13 mb-3">{{$data->description_livre}}</p>
                             <p class = "mb-1">
                                 <span class = "pe-2 text-nowrap mb-2 d-inline-block">
