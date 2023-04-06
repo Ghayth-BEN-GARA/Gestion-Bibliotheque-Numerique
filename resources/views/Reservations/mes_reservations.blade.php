@@ -77,7 +77,7 @@
                                                                         <i class = "mdi mdi-eye me-1"></i>
                                                                         Consulter
                                                                     </a>
-                                                                    <a href = "javascript:void(0)" class = "dropdown-item">
+                                                                    <a href = "{{url('/edit-reservation?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
                                                                         <i class = "mdi mdi-pencil me-1"></i>
                                                                         Modifier
                                                                     </a>

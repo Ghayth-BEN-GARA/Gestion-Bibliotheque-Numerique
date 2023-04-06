@@ -67,5 +67,39 @@
         public function annulerReservation($id_reservation){
             return Reservation::where("id_reservation", "=", $id_reservation)->delete();
         }
+
+        public function ouvrirEditReservation(Request $request){
+            $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
+            return view("reservations.edit_reservation", compact("reservation"));
+        }
+
+        public function getInformationsReservationUser($id_reservation, $id_user){
+            return Reservation::join("livres", "livres.id_livre", "=", "reservations.id_livre")
+            ->where("reservations.id_user", "=", $id_user)
+            ->where("reservations.id_reservation", "=", $id_reservation)
+            ->orderBy("date_time_creation_reservation", "desc")
+            ->first();
+        }
+
+        public function gestionModifierReservation(Request $request){
+            if($request->date_retour < $request->date_pret){
+                return back()->with("erreur_date_retour", "La date de retour que vous avez saisie n'est pas valide.");
+            }
+
+            elseif($this->modifierReservation($request->date_pret, $request->date_retour, $request->id_reservation)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que cette réservation a été modifié avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier cette réservation pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function modifierReservation($date_pret, $date_retour, $id_reservation){
+            return Reservation::where("id_reservation", "=", $id_reservation)->update([
+                "date_pret" => $date_pret,
+                "date_retour" => $date_retour
+            ]);
+        }
     }
 ?>
