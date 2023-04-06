@@ -1,6 +1,8 @@
 <?php
     namespace App\Http\Controllers;
     use Illuminate\Http\Request;
+    use Illuminate\Support\Facades\Mail;
+    use App\Mail\EnvoyerAlertNotificationDateRetour;
     use App\Models\Reservation;
     use App\Models\Livre;
 
@@ -118,9 +120,33 @@
 
         public function getInformationsReservation($id_reservation){
             return Reservation::join("livres", "livres.id_livre", "=", "reservations.id_livre")
+            ->join("users", "users.id_user", "=", "reservations.id_user")
             ->where("reservations.id_reservation", "=", $id_reservation)
             ->orderBy("date_time_creation_reservation", "desc")
             ->first();
+        }
+
+        public function gestionEnvoyerAlerteReservation(Request $request){
+            $reservation = $this->getInformationsReservation($request->input("id_reservation"));
+
+            if($this->envoyerAlertReservation($reservation->email, $reservation->nom, $reservation->prenom, $reservation->titre_livre, $reservation->date_pret)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez envoyé une notification à l'utilisateur avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas envoyer une notification à l'utilisateur le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function envoyerAlertReservation($email, $nom, $prenom, $titre, $date_pret){
+            $mailData = [
+                'email' => $email,
+                'fullname' => $prenom." ".$nom,
+                'titre' => $titre,
+                "date_pret" => $date_pret
+            ];
+    
+            return Mail::to($email)->send(new EnvoyerAlertNotificationDateRetour($mailData));
         }
     }
 ?>

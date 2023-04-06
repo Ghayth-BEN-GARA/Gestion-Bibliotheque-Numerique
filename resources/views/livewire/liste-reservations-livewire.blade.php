@@ -41,11 +41,11 @@
                                 </span>
                             </p>
                             <div id = "tooltip-container">
-                                <a href = "javascript:void(0)" data-bs-container = "#tooltip-container" data-bs-toggle = "tooltip" data-bs-placement = "top" title = "{{auth()->user()->getFullnameUserAttribute()}}" class = "d-inline-block">
-                                    <img src = "{{URL::asset(auth()->user()->getImageUserAttribute())}}" class = "rounded-circle avatar-xs" alt = "Photo de profil">
+                                <a href = "javascript:void(0)" data-bs-container = "#tooltip-container" data-bs-toggle = "tooltip" data-bs-placement = "top" title = "{{$data->prenom}} {{$data->nom}}" class = "d-inline-block">
+                                    <img src = "{{URL::asset($data->image)}}" class = "rounded-circle avatar-xs" alt = "Photo de profil">
                                 </a>
                                 <a href = "javascript:void(0)" class = "d-inline-block text-muted fw-bold ms-2">
-                                    {{auth()->user()->getFullnameUserAttribute()}}
+                                    {{$data->prenom}} {{$data->nom}}
                                 </a>
                             </div>
                             @if(now()->addDay(1)->format("Y-m-d") == $data->getDateRetourAttribute())

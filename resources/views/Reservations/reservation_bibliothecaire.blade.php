@@ -45,17 +45,6 @@
                                                 <div class = "col-xxl-8 col-lg-6">
                                                     <div class = "card d-block">
                                                         <div class = "card-body">
-                                                            <div class = "dropdown float-end">
-                                                                <a href = "javascript:void(0)" class = "dropdown-toggle arrow-none card-drop" data-bs-toggle = "dropdown" aria-expanded = "false">
-                                                                    <i class = "dripicons-dots-3"></i>
-                                                                </a>
-                                                                <div class = "dropdown-menu dropdown-menu-end">
-                                                                    <a href = "{{url('/edit-reservation?id_reservation='.$reservation->getIdReservationAttribute())}}" class = "dropdown-item">
-                                                                        <i class = "mdi mdi-pencil me-1"></i>
-                                                                        Modifier
-                                                                    </a>
-                                                                </div>
-                                                            </div>
                                                             <h3 class = "mt-0">
                                                                 {{$reservation->titre_livre}}
                                                             </h3>
@@ -94,10 +83,10 @@
                                                             </div>
                                                             <div id = "tooltip-container">
                                                                 <h5>{{auth()->user()->getRoleUserAttribute()}} :</h5>
-                                                                <a href = "javascript:void(0)" data-bs-container = "#tooltip-container" data-bs-toggle = "tooltip" data-bs-placement = "top" title = "{{auth()->user()->getFullnameUserAttribute()}}" class = "d-inline-block">
-                                                                    <img src = "{{URL::asset(auth()->user()->getImageUserAttribute())}}" class = "rounded-circle img-thumbnail avatar-sm" alt = "{{auth()->user()->getFullnameUserAttribute()}}">
+                                                                <a href = "javascript:void(0)" data-bs-container = "#tooltip-container" data-bs-toggle = "tooltip" data-bs-placement = "top" title = "{{$reservation->prenom}} {{$reservation->nom}}" class = "d-inline-block">
+                                                                    <img src = "{{URL::asset($reservation->image)}}" class = "rounded-circle img-thumbnail avatar-sm" alt = "{{$reservation->prenom}} {{$reservation->nom}}">
                                                                 </a>
-                                                                <p class = "d-inline-block">{{auth()->user()->getFullnameUserAttribute()}}</p>
+                                                                <p class = "d-inline-block">{{$reservation->prenom}} {{$reservation->nom}}</p>
                                                             </div>
                                                         </div>
                                                     </div>
