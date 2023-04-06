@@ -110,5 +110,17 @@
         public function ouvrirListeReservations(){
             return view("reservations.liste_reservations");
         }
+
+        public function ouvrirReservationBibliothecaire(Request $request){
+            $reservation = $this->getInformationsReservation($request->input("id_reservation"));
+            return view("reservations.reservation_bibliothecaire", compact("reservation"));
+        }
+
+        public function getInformationsReservation($id_reservation){
+            return Reservation::join("livres", "livres.id_livre", "=", "reservations.id_livre")
+            ->where("reservations.id_reservation", "=", $id_reservation)
+            ->orderBy("date_time_creation_reservation", "desc")
+            ->first();
+        }
     }
 ?>
