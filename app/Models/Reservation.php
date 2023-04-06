@@ -17,6 +17,7 @@
             "id_reservation",
             "date_pret",
             "date_retour",
+            "is_returned",
             "id_livre",
             "id_user",
             "date_time_creation_reservation"
@@ -40,6 +41,14 @@
 
         public function setDateRetourAttribute($value){
             $this->attributes["date_retour"] = $value;
+        }
+
+        public function getIsReturnedAttribute(){
+            return $this->attributes["is_returned"];
+        }
+
+        public function setIsReturnedAttribute($value){
+            $this->attributes["is_returned"] = $value;
         }
 
         public function getIdLivreAttribute(){

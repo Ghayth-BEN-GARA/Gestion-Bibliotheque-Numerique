@@ -14,6 +14,7 @@
                 $table->id("id_reservation");
                 $table->date("date_pret")->nullable();
                 $table->date("date_retour")->nullable();
+                $table->boolean("is_returned")->default(false);
                 $table->bigInteger("id_livre")->unsigned()->nullable();
                 $table->bigInteger("id_user")->unsigned()->nullable();
                 $table->datetime("date_time_creation_reservation")->default(DB::raw('CURRENT_TIMESTAMP'))->setTimezone('GMT');
