@@ -28,7 +28,7 @@
                         </div>
                         <div class = "row">
                             <div class = "col-12">
-                                <div class = "card">
+                                <div class = "">
                                     <div class = "card-body">
                                         @if(Session()->has("success"))
                                             <div class = "alert alert-success d-flex alert-dismissible fade show mt-1" role = "alert">

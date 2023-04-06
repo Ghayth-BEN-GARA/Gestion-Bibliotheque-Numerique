@@ -108,7 +108,7 @@
         }
 
         public function ouvrirListeReservations(){
-            return view("reservations.liste_reservations", compact("reservation"));
+            return view("reservations.liste_reservations");
         }
     }
 ?>

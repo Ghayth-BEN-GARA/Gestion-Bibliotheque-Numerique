@@ -76,7 +76,7 @@
                 <li class = "side-nav-item">
                     <a data-bs-toggle = "collapse" href = "#reservations" aria-expanded = "false" aria-controls = "reservations" class = "side-nav-link">
                         <i class = "uil-book-open"></i>
-                        <span> Mes réservations </span>
+                        <span> Réservations </span>
                         <span class = "menu-arrow"></span>
                     </a>
                     <div class = "collapse" id = "reservations">
