@@ -48,7 +48,11 @@
                                                             <h3 class = "mt-0">
                                                                 {{$reservation->titre_livre}}
                                                             </h3>
-                                                            <div class = "badge bg-success text-light mb-3 p-2">Réservé</div>
+                                                            @if($reservation->getIsReturnedAttribute() == true)
+                                                                <div class = "badge bg-success mb-3 p-2">Retourné</div>
+                                                            @else
+                                                                <div class = "badge bg-danger mb-3 p-2">Non retourné</div>
+                                                            @endif
                                                             <h5>Auteur :</h5>
                                                             <p class = "text-muted mb-2">
                                                                 {{$reservation->auteur_livre}}

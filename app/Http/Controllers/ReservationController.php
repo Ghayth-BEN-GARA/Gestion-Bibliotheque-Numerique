@@ -6,6 +6,7 @@
     use App\Mail\EnvoyerMailLivreRetourner;
     use App\Models\Reservation;
     use App\Models\Livre;
+    use App\Models\User;
 
     class ReservationController extends Controller{
         public function ouvrirListeLivresReservations(Request $request){
@@ -179,6 +180,15 @@
             return Reservation::where("id_reservation", "=", $id_reservation)->update([
                 "is_returned" => true
             ]);
+        }
+
+        public function ouvrirPensaliser(Request $request){
+            $user = $this->getInformationsUser($request->input("id_user"));
+            return view("Reservations.pernaliser", compact("user"));
+        }
+
+        public function getInformationsUser($id_user){
+            return User::where("id_user", "=", $id_user)->first();
         }
     }
 ?>

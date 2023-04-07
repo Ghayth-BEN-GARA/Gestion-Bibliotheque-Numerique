@@ -114,5 +114,6 @@
         Route::get('/reservation-bibliothecaire', 'ouvrirReservationBibliothecaire')->middleware("session_not_bibliothecaire");
         Route::get('/envoyer-alert-reservation', 'gestionEnvoyerAlerteReservation');
         Route::get('/envoyer-mail-livre-retourner', 'gestionEnvoyerMailLivreRetourner');
+        Route::get('/penaliser-etudiant', 'ouvrirPensaliser')->middleware("session_not_bibliothecaire");
     });
 ?>
