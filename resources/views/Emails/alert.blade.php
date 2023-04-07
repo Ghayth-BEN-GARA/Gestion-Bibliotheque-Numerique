@@ -7,7 +7,7 @@
         <meta http-equiv = "Content-Security-Policy" content = "upgrade-insecure-requests">
         <meta http-equiv = "Content-type" content = "text/html; charset=utf-8"/>
         <link rel = "icon" href = "{{asset('/images/favicon.png')}}">
-        <title>Alert | Université Sesame</title>
+        <title>Alert | IPSAS</title>
     </head>
     <body style = "margin: 0; font-family: Nunito, sans-serif; font-size: 0.9rem; font-weight: 400; line-height: 1.5; color: #6c757d; background-color: #fafbfe; -webkit-text-size-adjust: 100%; -webkit-tap-highlight-color: transparent;">
         <div style = "--bs-gutter-x: 0px; --bs-gutter-y: 0; display: -webkit-box; display: -ms-flexbox; display: flex; -ms-flex-wrap: wrap; flex-wrap: wrap; margin-top: calc(var(--bs-gutter-y) * -1); margin-right: calc(var(--bs-gutter-x) * -0.5); margin-left: calc(var(--bs-gutter-x) * -0.5);">

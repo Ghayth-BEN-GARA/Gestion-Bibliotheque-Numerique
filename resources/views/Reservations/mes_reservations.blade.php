@@ -75,16 +75,22 @@
                                                                 <div class = "dropdown-menu dropdown-menu-end">
                                                                     <a href = "{{url('/reservation?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
                                                                         <i class = "mdi mdi-eye me-1"></i>
-                                                                        Consulter
+                                                                        Consulter la réservations
                                                                     </a>
-                                                                    <a href = "{{url('/edit-reservation?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
-                                                                        <i class = "mdi mdi-pencil me-1"></i>
-                                                                        Modifier
-                                                                    </a>
-                                                                    <a href = "javascript:void(0)" class = "dropdown-item" onclick = "questionAnnulerReservation({{$data->getIdReservationAttribute()}})">
-                                                                        <i class = "mdi mdi-delete me-1"></i>
-                                                                        Annuler
-                                                                    </a>
+                                                                    @if($data->getIsReturnedAttribute() == false)
+                                                                        <a href = "javascript:void(0)" class = "dropdown-item" onclick = "questionAnnulerReservation({{$data->getIdReservationAttribute()}})">
+                                                                            <i class = "mdi mdi-delete me-1"></i>
+                                                                            Annuler la réservations
+                                                                        </a>
+                                                                            <a href = "{{url('/edit-reservation?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
+                                                                            <i class = "mdi mdi-pencil me-1"></i>
+                                                                            Modifier la réservations
+                                                                        </a>
+                                                                        <a href = "{{url('/envoyer-mail-livre-retourner?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
+                                                                            <i class = "mdi mdi-book-refresh-outline me-1"></i>
+                                                                            Retourner le livre
+                                                                        </a>
+                                                                    @endif
                                                                 </div>
                                                             </div>
                                                             <h4 class = "mt-0">

@@ -3,6 +3,7 @@
     use Illuminate\Http\Request;
     use Illuminate\Support\Facades\Mail;
     use App\Mail\EnvoyerAlertNotificationDateRetour;
+    use App\Mail\EnvoyerMailLivreRetourner;
     use App\Models\Reservation;
     use App\Models\Livre;
 
@@ -134,7 +135,7 @@
             }
 
             else{
-                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas envoyer une notification à l'utilisateur le moment. Veuillez réessayer plus tard.");
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas envoyer une notification à l'utilisateur pour le moment. Veuillez réessayer plus tard.");
             }
         }
 
@@ -147,6 +148,37 @@
             ];
     
             return Mail::to($email)->send(new EnvoyerAlertNotificationDateRetour($mailData));
+        }
+
+        public function gestionEnvoyerMailLivreRetourner(Request $request){
+            $reservation = $this->getInformationsReservation($request->input("id_reservation"));
+
+            if($this->envoyerMailLivreRetourner($reservation->nom, $reservation->prenom, $reservation->email, $reservation->date_pret, $reservation->titre_livre, $reservation->auteur_livre)){
+                $this->modifierLivreIsReturned($request->input("id_reservation"));
+                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez envoyé une notification à l'utilisateur avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas envoyer une notification à la bibliothéque pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function envoyerMailLivreRetourner($nom, $prenom, $email, $date_pret, $titre, $auteur){
+            $mailData = [
+                'email' => $email,
+                'fullname' => $prenom." ".$nom,
+                'titre' => $titre,
+                "date_pret" => $date_pret,
+                "auteur" => $auteur
+            ];
+
+            return Mail::to("biblionumer@gmail.com")->send(new EnvoyerMailLivreRetourner($mailData));
+        }
+
+        public function modifierLivreIsReturned($id_reservation){
+            return Reservation::where("id_reservation", "=", $id_reservation)->update([
+                "is_returned" => true
+            ]);
         }
     }
 ?>
