@@ -7,6 +7,7 @@
     use App\Models\Reservation;
     use App\Models\Livre;
     use App\Models\User;
+    use App\Models\Penalite;
 
     class ReservationController extends Controller{
         public function ouvrirListeLivresReservations(Request $request){
@@ -182,13 +183,33 @@
             ]);
         }
 
-        public function ouvrirPensaliser(Request $request){
+        public function ouvrirPensaliserEtudiant(Request $request){
             $user = $this->getInformationsUser($request->input("id_user"));
-            return view("Reservations.pernaliser", compact("user"));
+            return view("Reservations.penaliser_etudiant", compact("user"));
         }
 
         public function getInformationsUser($id_user){
-            return User::where("id_user", "=", $id_user)->first();
+            return User::where("id_user", "=", $id_user)
+            ->where("role", "=", "Étudiant")
+            ->first();
+        }
+
+        public function gestionCreerPenalisationEtudiant(Request $request){
+            if($this->creerPenaliteEtudiant($request->id_user, $request->nbr_jours)){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez pénalisé l'étudiant avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas pénaliser l'étudiant pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function creerPenaliteEtudiant($id_user, $nbr_jours){
+            $penalite = new Penalite();
+            $penalite->setIdUserAttribute($id_user);
+            $penalite->setNbrJourAttribute($nbr_jours);
+
+            return $penalite->save();
         }
     }
 ?>

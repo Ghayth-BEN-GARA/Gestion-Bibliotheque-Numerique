@@ -92,7 +92,7 @@
                                                     <div class = "col-md-6">
                                                         <div class = "mb-3">
                                                             <label for = "code" class = "form-label">Code</label>
-                                                            <input type = "number" class = "form-control" id = "code" name = "code" placeholder = "Saisissez le code.." onKeyPress = "if(this.value.length==8) return false; return event.charCode>=48 && event.charCode<=57" value = "{{$livre->getCodeLivreAttribute()}}" required>
+                                                            <input type = "number" class = "form-control" id = "code" name = "code" placeholder = "Saisissez le code.." onKeyPress = "return false; return event.charCode>=48 && event.charCode<=57" value = "{{$livre->getCodeLivreAttribute()}}" required>
                                                         </div>
                                                         @if (session()->has('erreur_code'))
                                                             <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_code')}}</p>
