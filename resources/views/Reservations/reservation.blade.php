@@ -45,17 +45,6 @@
                                                 <div class = "col-xxl-8 col-lg-6">
                                                     <div class = "card d-block">
                                                         <div class = "card-body">
-                                                            <div class = "dropdown float-end">
-                                                                <a href = "javascript:void(0)" class = "dropdown-toggle arrow-none card-drop" data-bs-toggle = "dropdown" aria-expanded = "false">
-                                                                    <i class = "dripicons-dots-3"></i>
-                                                                </a>
-                                                                <div class = "dropdown-menu dropdown-menu-end">
-                                                                    <a href = "{{url('/edit-reservation?id_reservation='.$reservation->getIdReservationAttribute())}}" class = "dropdown-item">
-                                                                        <i class = "mdi mdi-pencil me-1"></i>
-                                                                        Modifier
-                                                                    </a>
-                                                                </div>
-                                                            </div>
                                                             <h3 class = "mt-0">
                                                                 {{$reservation->titre_livre}}
                                                             </h3>
