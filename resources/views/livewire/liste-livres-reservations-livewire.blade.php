@@ -22,7 +22,8 @@
                                 <p class = "card-footer">
                                     @if($this->getInformationsReservationLivre($data->getIdLivreAttribute()) == 1)
                                         <a href = "javascript:void(0)" class = "btn btn-light" disabled style = "cursor:default">Réservé</a>
-                                    
+                                    @elseif($this->verifierSiLivreNonRetourneExist() && $this->verifierSiPenaliteExist())
+                                        <a href = "javascript:void(0)" class = "btn btn-danger">Pénalisé</a>
                                     @else
                                         <a href = "{{url('/add-reservation?id_livre='.$data->getIdLivreAttribute())}}" class = "btn btn-primary">Réserver</a>
                                     @endif

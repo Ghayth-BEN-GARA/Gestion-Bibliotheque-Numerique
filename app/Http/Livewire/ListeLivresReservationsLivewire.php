@@ -5,6 +5,7 @@
     use Illuminate\Pagination\Paginator;
     use App\Models\Livre;
     use App\Models\Reservation;
+    use App\Models\Penalite;
 
     class ListeLivresReservationsLivewire extends Component{
         public $search_livres;
@@ -39,6 +40,18 @@
             ->where("id_user", "=", auth()->user()->getIdUserAttribute())
             ->where("is_returned", "=", false)
             ->count();
+        }
+
+        public function verifierSiLivreNonRetourneExist(){
+            return Reservation::where("id_user", "=", auth()->user()->getIdUserAttribute())
+            ->where("is_returned", "=", false)
+            ->exists();
+        }
+
+        public function verifierSiPenaliteExist(){
+            return Penalite::where("id_user", "=", auth()->user()->getIdUserAttribute())
+            ->where("date_start", "=", now()->addDay(-1)->format("Y-m-d"))
+            ->exists();
         }
     }
 ?>
