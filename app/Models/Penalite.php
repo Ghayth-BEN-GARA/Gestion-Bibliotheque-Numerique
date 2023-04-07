@@ -16,7 +16,9 @@
         protected $fillable = [
             "id_penalite",
             "id_user",
-            "nbr_jour"
+            "nbr_jour",
+            "date_start",
+            "id_reservation"
         ];
 
         public function getIdPenaliteAttribute(){
@@ -37,6 +39,26 @@
 
         public function setNbrJourAttribute($value){
             $this->attributes["nbr_jour"] = $value;
+        }
+
+        public function getDateStartAttribute(){
+            return $this->attributes["date_start"];
+        }
+
+        public function setDateStartAttribute($value){
+            $this->attributes["date_start"] = $value;
+        }
+
+        public function getIdReservationAttribute(){
+            return $this->attributes["id_reservation"];
+        }
+
+        public function setIdReservationAttribute($value){
+            $this->attributes["id_reservation"] = $value;
+        }
+
+        public function getFormattedDateStartPenaliteAttribute(){
+            return strftime("%A %d %B %Y",strtotime(strftime($this->getDateStartAttribute())));
         }
     }
 ?>

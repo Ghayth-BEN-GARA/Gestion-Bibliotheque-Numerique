@@ -5,6 +5,7 @@
     use Illuminate\Pagination\Paginator;
     use App\Models\Reservation;
     use App\Models\Livre;
+    use App\Models\Penalite;
 
     class ListeReservationsLivewire extends Component{
         public $search_reservations;
@@ -38,6 +39,12 @@
             Paginator::currentPageResolver(function(){
                 return $this->currentPage;
             });
+        }
+
+        public function getPenaliteUserReservation($id_user, $id_reservation){
+            return Penalite::where("id_user", "=", $id_user)
+            ->where("id_reservation", "=", $id_reservation)
+            ->exists();
         }
     }
 ?>

@@ -195,21 +195,45 @@
         }
 
         public function gestionCreerPenalisationEtudiant(Request $request){
-            if($this->creerPenaliteEtudiant($request->id_user, $request->nbr_jours)){
-                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez pénalisé l'étudiant avec succès.");
+            if($this->verifierSiPenaliteExist($request->id_user)){
+                if($this->modifierPenaliteEtudiant($request->id_user, $request->nbr_jours, $request->id_reservation)){
+                    return back()->with("success", "Nous sommes très heureux de vous informer que vous avez pénalisé l'étudiant avec succès.");
+                }
+    
+                else{
+                    return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas pénaliser l'étudiant pour le moment. Veuillez réessayer plus tard.");
+                }
             }
 
             else{
-                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas pénaliser l'étudiant pour le moment. Veuillez réessayer plus tard.");
+                if($this->creerPenaliteEtudiant($request->id_user, $request->nbr_jours, $request->id_reservation)){
+                    return back()->with("success", "Nous sommes très heureux de vous informer que vous avez pénalisé l'étudiant avec succès.");
+                }
+    
+                else{
+                    return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas pénaliser l'étudiant pour le moment. Veuillez réessayer plus tard.");
+                }
             }
         }
 
-        public function creerPenaliteEtudiant($id_user, $nbr_jours){
+        public function creerPenaliteEtudiant($id_user, $nbr_jours, $id_reservation){
             $penalite = new Penalite();
             $penalite->setIdUserAttribute($id_user);
             $penalite->setNbrJourAttribute($nbr_jours);
+            $penalite->setIdReservationAttribute($id_reservation);
 
             return $penalite->save();
+        }
+
+        public function modifierPenaliteEtudiant($id_user, $nbr_jours, $id_reservation){
+            return Penalite::where("id_user", "=", $id_user)->update([
+                "nbr_jour" => $nbr_jours,
+                "id_reservation" => $id_reservation
+            ]);
+        }
+
+        public function verifierSiPenaliteExist($id_user){
+            return Penalite::where("id_user", "=", $id_user)->exists();
         }
     }
 ?>

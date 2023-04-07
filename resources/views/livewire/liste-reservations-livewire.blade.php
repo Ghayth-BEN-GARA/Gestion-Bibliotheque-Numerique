@@ -26,8 +26,13 @@
                                             <i class = "mdi mdi-email-send me-1"></i>
                                             Notifier
                                         </a>
+                                    @elseif($this->getPenaliteUserReservation($data->getIdUserAttribute(), $data->getIdReservationAttribute()))
+                                        <a href = "{{url('/penaliser-etudiant?id_user='.$data->getIdUserAttribute().'&id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
+                                            <i class = "mdi mdi-account-remove-outline me-1"></i>
+                                            Dépénaliser
+                                        </a>
                                     @elseif(now()->format("Y-m-d") > $data->getDateRetourAttribute() && $data->role == "Étudiant" && $data->getIsReturnedAttribute() == false)
-                                        <a href = "{{url('/penaliser-etudiant?id_user='.$data->getIdUserAttribute())}}" class = "dropdown-item">
+                                        <a href = "{{url('/penaliser-etudiant?id_user='.$data->getIdUserAttribute().'&id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
                                             <i class = "mdi mdi-account-alert-outline me-1"></i>
                                             Pénaliser
                                         </a>
@@ -61,7 +66,7 @@
                                 <p class = "mt-3">
                                     <strong class = "text-danger">Vous devez envoyer une alerte pour la date de retour du livre.</strong>
                                 </p>
-                            @elseif(now()->format("Y-m-d") > $data->getDateRetourAttribute() && $data->role == "Étudiant" && $data->getIsReturnedAttribute() == false)
+                            @elseif(now()->format("Y-m-d") > $data->getDateRetourAttribute() && $data->role == "Étudiant" && $data->getIsReturnedAttribute() == false && (!$this->getPenaliteUserReservation($data->getIdUserAttribute(), $data->getIdReservationAttribute())))
                                 <p class = "mt-3">
                                     <strong class = "text-danger">Vous pouvez pénaliser cet étudiant.</strong>
                                 </p>
