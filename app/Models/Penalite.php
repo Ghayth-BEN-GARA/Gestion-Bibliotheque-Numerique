@@ -17,8 +17,7 @@
             "id_penalite",
             "id_user",
             "nbr_jour",
-            "date_start",
-            "id_reservation"
+            "date_start"
         ];
 
         public function getIdPenaliteAttribute(){
@@ -49,13 +48,6 @@
             $this->attributes["date_start"] = $value;
         }
 
-        public function getIdReservationAttribute(){
-            return $this->attributes["id_reservation"];
-        }
-
-        public function setIdReservationAttribute($value){
-            $this->attributes["id_reservation"] = $value;
-        }
 
         public function getFormattedDateStartPenaliteAttribute(){
             return strftime("%A %d %B %Y",strtotime(strftime($this->getDateStartAttribute())));

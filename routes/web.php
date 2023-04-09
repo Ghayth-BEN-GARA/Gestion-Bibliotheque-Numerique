@@ -9,6 +9,7 @@
     use App\Http\Controllers\PfeController;
     use App\Http\Controllers\LivreController;
     use App\Http\Controllers\ReservationController;
+    use App\Http\Controllers\PenaliteController;
 
     /*
     |--------------------------------------------------------------------------
@@ -117,5 +118,10 @@
         Route::get('/penaliser-etudiant', 'ouvrirPensaliserEtudiant')->middleware("session_not_bibliothecaire");
         Route::post('/creer-penalisation-etudiant', 'gestionCreerPenalisationEtudiant');
         Route::get('/emprunt', 'ouvrirEmprunt')->middleware("session_not_etudiant_not_enseignant");
+    });
+
+    Route::controller(PenaliteController::class)->group(function() {
+        Route::get('/penaliser-etudiant', 'ouvrirPensaliserEtudiant')->middleware("session_not_bibliothecaire");
+
     });
 ?>

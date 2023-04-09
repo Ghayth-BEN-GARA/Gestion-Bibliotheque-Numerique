@@ -183,17 +183,6 @@
             ]);
         }
 
-        public function ouvrirPensaliserEtudiant(Request $request){
-            $user = $this->getInformationsUser($request->input("id_user"));
-            return view("Reservations.penaliser_etudiant", compact("user"));
-        }
-
-        public function getInformationsUser($id_user){
-            return User::where("id_user", "=", $id_user)
-            ->where("role", "=", "Étudiant")
-            ->first();
-        }
-
         public function gestionCreerPenalisationEtudiant(Request $request){
             if($this->verifierSiPenaliteExist($request->id_user)){
                 if($this->modifierPenaliteEtudiant($request->id_user, $request->nbr_jours, $request->id_reservation)){
