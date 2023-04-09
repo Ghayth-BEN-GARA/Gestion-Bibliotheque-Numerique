@@ -54,7 +54,7 @@
                             </div>
                             @if(now()->addDay(1)->format("Y-m-d") == $data->getDateRetourAttribute())
                                 <p class = "mt-3">
-                                    <strong class = "text-danger">Vous devez envoyer une alerte pour la date de retour du livre.</strong>
+                                    <strong class = "text-danger">Besoin de le notifier pour la date de retour du livre.</strong>
                                 </p>
                             @endif
                         </div>
