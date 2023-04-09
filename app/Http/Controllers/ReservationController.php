@@ -228,12 +228,18 @@
         public function modifierPenaliteEtudiant($id_user, $nbr_jours, $id_reservation){
             return Penalite::where("id_user", "=", $id_user)->update([
                 "nbr_jour" => $nbr_jours,
-                "id_reservation" => $id_reservation
+                "id_reservation" => $id_reservation,
+                "date_start" => now()->format("Y-m-d")
             ]);
         }
 
         public function verifierSiPenaliteExist($id_user){
             return Penalite::where("id_user", "=", $id_user)->exists();
+        }
+
+        public function ouvrirEmprunt(Request $request){
+            $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
+            return view("Reservations.emprunt", compact("reservation"));
         }
     }
 ?>
