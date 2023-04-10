@@ -83,7 +83,6 @@
                                                     </div>
                                                 </div>
                                                 <input type = "hidden" name = "id_user" id = "id_user" value = "{{$_GET['id_user']}}">
-                                                <input type = "hidden" name = "id_reservation" id = "id_reservation" value = "{{$_GET['id_reservation']}}">
                                                 <div class = "row mt-3">
                                                     <div class = "col-sm-6"></div>
                                                     <div class = "col-sm-6 text-end">

@@ -115,13 +115,12 @@
         Route::get('/reservation-bibliothecaire', 'ouvrirReservationBibliothecaire')->middleware("session_not_bibliothecaire");
         Route::get('/envoyer-alert-reservation', 'gestionEnvoyerAlerteReservation');
         Route::get('/envoyer-mail-livre-retourner', 'gestionEnvoyerMailLivreRetourner');
-        Route::get('/penaliser-etudiant', 'ouvrirPensaliserEtudiant')->middleware("session_not_bibliothecaire");
-        Route::post('/creer-penalisation-etudiant', 'gestionCreerPenalisationEtudiant');
         Route::get('/emprunt', 'ouvrirEmprunt')->middleware("session_not_etudiant_not_enseignant");
     });
 
     Route::controller(PenaliteController::class)->group(function() {
         Route::get('/penaliser-etudiant', 'ouvrirPensaliserEtudiant')->middleware("session_not_bibliothecaire");
-
+        Route::get('/liste-users-penaliser', 'ouvrirListeUsersPenaliser')->middleware("session_not_bibliothecaire");
+        Route::post('/creer-penalisation-etudiant', 'gestionCreerPenalisationEtudiant');
     });
 ?>

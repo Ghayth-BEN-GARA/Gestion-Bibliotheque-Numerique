@@ -87,6 +87,20 @@
                         </ul>
                     </div>
                 </li>
+                <li class = "side-nav-item">
+                    <a data-bs-toggle = "collapse" href = "#penalites" aria-expanded = "false" aria-controls = "penalites" class = "side-nav-link">
+                        <i class = "mdi mdi-account-alert-outline"></i>
+                        <span> Pénalités  </span>
+                        <span class = "menu-arrow"></span>
+                    </a>
+                    <div class = "collapse" id = "penalites">
+                        <ul class = "side-nav-second-level">
+                            <li>
+                                <a href = "{{url('/liste-users-penaliser')}}">Gérer</a>
+                            </li>       
+                        </ul>
+                    </div>
+                </li>
             @endif
             <li class = "side-nav-item">
                 <a data-bs-toggle = "collapse" href = "#pfes" aria-expanded = "false" aria-controls = "pfes" class = "side-nav-link">
