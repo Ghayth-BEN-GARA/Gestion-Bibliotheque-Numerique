@@ -53,7 +53,7 @@
                                                 <div class = "col-sm-6">
                                                     <div class = "float-end mt-3">
                                                         <p>
-                                                            <b>Bonjour {{auth()->user()->getFullnameUserAttribute()}}</b>
+                                                            <b>Bonjour @if(auth()->user()->getRoleUserAttribute() != "Bibliothécaire") {{auth()->user()->getFullnameUserAttribute()}} @else {{$reservation->prenom}} {{$reservation->nom}} @endif</b>
                                                         </p>
                                                         <p class = "text-muted font-13">
                                                             Veuillez trouver ci-dessous une description détaillée de la réservation choisie. Merci de respecter la date de retour du livre réservé et n'hésitez pas à nous contacter si vous avez des questions.
@@ -112,16 +112,16 @@
                                                     </address>
                                                 </div>
                                                 <div class = "col-sm-4">
-                                                    <h6>{{auth()->user()->getFullnameUserAttribute()}}</h6>
+                                                    <h6>@if(auth()->user()->getRoleUserAttribute() != "Bibliothécaire") {{auth()->user()->getFullnameUserAttribute()}} @else {{$reservation->prenom}} {{$reservation->nom}} @endif</h6>
                                                     <address>
-                                                        {{auth()->user()->getAdresseUserAttribute()}}
+                                                    @if(auth()->user()->getRoleUserAttribute() != "Bibliothécaire") {{auth()->user()->getAdresseUserAttribute()}} @else {{$reservation->adresse}} @endif
                                                         <br>
-                                                        {{auth()->user()->getEmailUserAttribute()}}
+                                                        @if(auth()->user()->getRoleUserAttribute() != "Bibliothécaire") {{auth()->user()->getEmailUserAttribute()}} @else {{$reservation->email}} @endif
                                                     </address>
                                                 </div>
                                                 <div class = "col-sm-4">
                                                     <div class = "text-sm-end">
-                                                        <img src = "{{URL::asset(auth()->user()->getImageUserAttribute())}}" alt = "Photo de profil" class = "rounded-circle avatar-lg img-thumbnail me-2">
+                                                        <img src = "@if(auth()->user()->getRoleUserAttribute() != 'Bibliothécaire') {{auth()->user()->getImageUserAttribute()}} @else {{$reservation->image}} @endif" alt = "Photo de profil" class = "rounded-circle avatar-lg img-thumbnail me-2">
                                                     </div>
                                                 </div>
                                             </div>

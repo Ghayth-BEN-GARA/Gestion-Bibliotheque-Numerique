@@ -115,7 +115,7 @@
         Route::get('/reservation-bibliothecaire', 'ouvrirReservationBibliothecaire')->middleware("session_not_bibliothecaire");
         Route::get('/envoyer-alert-reservation', 'gestionEnvoyerAlerteReservation');
         Route::get('/envoyer-mail-livre-retourner', 'gestionEnvoyerMailLivreRetourner');
-        Route::get('/emprunt', 'ouvrirEmprunt')->middleware("session_not_etudiant_not_enseignant");
+        Route::get('/emprunt', 'ouvrirEmprunt')->middleware("session_not_exist");
     });
 
     Route::controller(PenaliteController::class)->group(function() {

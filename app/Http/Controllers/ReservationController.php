@@ -192,7 +192,14 @@
         }
 
         public function ouvrirEmprunt(Request $request){
-            $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
+            if(auth()->user()->getRoleUserAttribute() == "Bibliothécaire"){
+                $reservation = $this->getInformationsReservation($request->input("id_reservation"));
+            }
+
+            else{
+                $reservation = $this->getInformationsReservationUser($request->input("id_reservation"), auth()->user()->getIdUserAttribute());
+            }
+            
             return view("Reservations.emprunt", compact("reservation"));
         }
     }
