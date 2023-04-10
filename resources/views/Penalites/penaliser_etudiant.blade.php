@@ -86,7 +86,13 @@
                                                 <div class = "row mt-3">
                                                     <div class = "col-sm-6"></div>
                                                     <div class = "col-sm-6 text-end">
-                                                        <button type = "submit" class = "btn btn-primary">Pénaliser</button>
+                                                        @if($verifier_penalite)
+                                                            <button type = "submit" class = "btn btn-primary" disabled>Pénaliser</button>
+                                                            <p class = "text-danger mt-2">L'étudiant <b>{{$user->getFullnameUserAttribute()}}</b> est déjà pénalisé.</p>
+                                                        @else
+                                                            <button type = "submit" class = "btn btn-primary">Pénaliser</button>
+                                                        @endif
+                                                        
                                                     </div>
                                                 </div>
                                             </form>

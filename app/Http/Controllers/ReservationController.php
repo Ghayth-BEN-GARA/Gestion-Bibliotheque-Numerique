@@ -7,7 +7,6 @@
     use App\Models\Reservation;
     use App\Models\Livre;
     use App\Models\User;
-    use App\Models\Penalite;
 
     class ReservationController extends Controller{
         public function ouvrirListeLivresReservations(Request $request){
@@ -180,14 +179,6 @@
         public function modifierLivreIsReturned($id_reservation){
             return Reservation::where("id_reservation", "=", $id_reservation)->update([
                 "is_returned" => true
-            ]);
-        }
-
-        public function modifierPenaliteEtudiant($id_user, $nbr_jours, $id_reservation){
-            return Penalite::where("id_user", "=", $id_user)->update([
-                "nbr_jour" => $nbr_jours,
-                "id_reservation" => $id_reservation,
-                "date_start" => now()->format("Y-m-d")
             ]);
         }
 

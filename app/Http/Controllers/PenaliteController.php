@@ -7,7 +7,13 @@
     class PenaliteController extends Controller{
         public function ouvrirPensaliserEtudiant(Request $request){
             $user = $this->getInformationsUser($request->input("id_user"));
-            return view("Penalites.penaliser_etudiant", compact("user"));
+            $verifier_penalite = $this->verifierSipenaliteExiste($request->input("id_user"));
+            return view("Penalites.penaliser_etudiant", compact("user", "verifier_penalite"));
+        }
+
+        public function verifierSipenaliteExiste($id_user){
+            return Penalite::where("id_user", "=", $id_user)
+            ->exists();
         }
 
         public function getInformationsUser($id_user){
