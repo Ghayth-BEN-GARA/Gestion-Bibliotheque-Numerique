@@ -31,6 +31,12 @@
                                         <i class = "mdi mdi-file-chart-outline me-1"></i>
                                         Consulter l'emprunt
                                     </a>
+                                    @if($data->getIsReturnedAttribute() == false)
+                                        <a href = "{{url('/edit-livre-is-returned?id_reservation='.$data->getIdReservationAttribute())}}" class = "dropdown-item">
+                                            <i class = "mdi mdi-book-edit-outline me-1"></i>
+                                            Modifier le retour
+                                        </a>
+                                    @endif
                                 </div>
                             </div>
                             <h4 class = "mt-0">

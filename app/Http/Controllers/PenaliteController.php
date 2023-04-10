@@ -3,6 +3,7 @@
     use Illuminate\Http\Request;
     use App\Models\Penalite;
     use App\Models\User;
+    use App\Models\Reservation;
 
     class PenaliteController extends Controller{
         public function ouvrirPensaliserEtudiant(Request $request){
@@ -42,5 +43,26 @@
             $penalite->setNbrJourAttribute($nbr_jours);
 
             return $penalite->save();
+        }
+
+        public function gestionDepenaliserEtudiant(Request $request){
+            if($this->deletePenalite($request->input("id_user"))){
+                $this->modifierLivreIsReturned($request->input("id_reservation"));
+                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez dépénalisé l'étudiant avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas dépénaliser l'étudiant pour le moment. Veuillez réessayer plus tard.");
+            }
+        }
+
+        public function deletePenalite($id_user){
+            return Penalite::where("id_user", "=", $id_user)->delete();
+        }
+
+        public function modifierLivreIsReturned($id_reservation){
+            return Reservation::where("id_reservation", "=", $id_reservation)->update([
+                "is_returned" => true
+            ]);
         }
     }

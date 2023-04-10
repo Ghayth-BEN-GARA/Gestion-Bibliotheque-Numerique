@@ -52,7 +52,7 @@
                                 @if(!$this->verifierSipenaliteExiste($data->getIdUserAttribute()))
                                     <a href = "{{url('/penaliser-etudiant?id_user='.$data->getIdUserAttribute())}}" class = "btn btn-danger">Pénaliser</a>
                                 @else
-                                    <a href = "{{url('/depenaliser-etudiant?id_user='.$data->getIdUserAttribute())}}" class = "btn btn-success">Dépénaliser</a>
+                                    <a href = "{{url('/depenaliser-etudiant?id_user='.$data->getIdUserAttribute().'&id_reservation='.$data->id_reservation)}}" class = "btn btn-success">Dépénaliser</a>
                                 @endif
                             </td>
                         </tr>

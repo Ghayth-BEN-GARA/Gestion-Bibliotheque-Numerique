@@ -155,7 +155,6 @@
             $reservation = $this->getInformationsReservation($request->input("id_reservation"));
 
             if($this->envoyerMailLivreRetourner($reservation->nom, $reservation->prenom, $reservation->email, $reservation->date_pret, $reservation->titre_livre, $reservation->auteur_livre)){
-                //$this->modifierLivreIsReturned($request->input("id_reservation"));
                 return back()->with("success", "Nous sommes très heureux de vous informer que vous avez envoyé une notification à l'utilisateur avec succès.");
             }
 
@@ -192,6 +191,16 @@
             }
             
             return view("Reservations.emprunt", compact("reservation"));
+        }
+
+        public function gestionModifierLivreReturned(Request $request){
+            if($this->modifierLivreIsReturned($request->input("id_reservation"))){
+                return back()->with("success", "Nous sommes très heureux de vous informer que vous avez modifié le retour du livre avec succès.");
+            }
+
+            else{
+                return back()->with("erreur", "Pour des raisons techniques, vous ne pouvez pas modifier le retour du livre pour le moment. Veuillez réessayer plus tard.");
+            }
         }
     }
 ?>
