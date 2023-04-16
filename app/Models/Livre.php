@@ -19,6 +19,8 @@
             "titre_livre",
             "auteur_livre",
             "description_livre",
+            "maison_edition_livre",
+            "annee_edition_livre",
             "image_livre"
         ];
 
@@ -58,12 +60,32 @@
             $this->attributes["description_livre"] = $value;
         }
 
+        public function getMaisonEditionLivreAttribute(){
+            return $this->attributes["maison_edition_livre"];
+        }
+
+        public function setMaisonEditionLivreLivreAttribute($value){
+            $this->attributes["maison_edition_livre"] = $value;
+        }
+
+        public function getAnneeEditionLivreAttribute(){
+            return $this->attributes["annee_edition_livre"];
+        }
+
+        public function setAnneeEditionLivreLivreAttribute($value){
+            $this->attributes["annee_edition_livre"] = $value;
+        }
+
         public function getImageLivreAttribute(){
             return $this->attributes["image_livre"];
         }
 
         public function setImageLivreAttribute($value){
             $this->attributes["image_livre"] = $value;
+        }
+
+        public function getFormattedAnneeEditionLivreAttribute(){
+            return strftime("%A %d %B %Y",strtotime(strftime($this->getAnneeEditionLivreAttribute())));
         }
     }
 ?>

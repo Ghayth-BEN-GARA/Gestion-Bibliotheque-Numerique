@@ -17,7 +17,11 @@
                 return back()->with("erreur_code", "Nous sommes désolés de vous informer que ce code est utilisé pour créer un autre livre.");
             }
 
-            elseif($this->creerLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description)){
+            elseif($request->date_edition > date("Y")){
+                return back()->with("erreur_date", "Nous sommes désolés de vous informer que la date d'édition de livre n'est pas valide.");
+            }
+
+            elseif($this->creerLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description, $request->maison_edition, $request->date_edition)){
                 return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été crée avec succès.");
             }
 
@@ -30,7 +34,7 @@
             return Livre::where("code_livre", "=", $code)->exists();
         }
 
-        public function creerLivre($titre, $auteur, $code, $image, $description){
+        public function creerLivre($titre, $auteur, $code, $image, $description, $maison, $date){
             $livre = new Livre();
             $livre->setCodeLivreAttribute($code);
             $livre->setTitreLivreAttribute($titre);
@@ -41,6 +45,8 @@
 
             $livre->setImageLivreAttribute($path);
             $livre->setDescriptionLivreAttribute($description);
+            $livre->setMaisonEditionLivreLivreAttribute($maison);
+            $livre->setAnneeEditionLivreLivreAttribute($date);
 
             return $livre->save();
         }
@@ -73,7 +79,11 @@
                 return back()->with("erreur_code", "Nous sommes désolés de vous informer que ce code est utilisé pour créer un autre livre.");
             }
 
-            elseif($this->modifierLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description, $request->input("id_livre"))){
+            elseif($request->date_edition > date("Y")){
+                return back()->with("erreur_date", "Nous sommes désolés de vous informer que la date d'édition de livre n'est pas valide.");
+            }
+
+            elseif($this->modifierLivre($request->titre, $request->auteur, $request->code, $request->image, $request->description, $request->maison_edition, $request->date_edition, $request->input("id_livre"))){
                 return back()->with("success", "Nous sommes très heureux de vous informer que ce livre a été modifié avec succès.");
             }
 
@@ -86,13 +96,15 @@
             return Livre::where("code_livre", "=", $code)->where("id_livre", "<>", $id_livre)->exists();
         }
 
-        public function modifierLivre($titre, $auteur, $code, $image, $description, $id_livre){
+        public function modifierLivre($titre, $auteur, $code, $image, $description, $maison, $date, $id_livre){
             if(is_null($image)){
                 return Livre::where("id_livre", "=", $id_livre)->update([
                     "titre_livre" => $titre,
                     "auteur_livre" => $auteur,
                     "code_livre" => $code,
-                    "description_livre" => $description
+                    "description_livre" => $description,
+                    "maison_edition_livre" => $maison,
+                    "annee_edition_livre" => $date
                 ]);
             }
 

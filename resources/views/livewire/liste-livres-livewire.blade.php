@@ -21,6 +21,7 @@
                         <div class = "card-body">
                             <h5 class = "card-title">Titre : {{$data->getTitreLivreAttribute()}}</h5>
                             <p class = "card-text">Auteur : {{$data->getAuteurLivreAttribute()}}</p>
+                            <p class = "card-text">Maison : {{$data->getMaisonEditionLivreAttribute()}}</p>
                         </div>
                         <div class = "card-body">
                             <a href = "{{url('/edit-livre?id_livre='.$data->getIdLivreAttribute())}}" class = "card-link text-custom" style = "color:#000">

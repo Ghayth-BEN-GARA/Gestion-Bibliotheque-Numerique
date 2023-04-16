@@ -81,10 +81,27 @@
                                                 <div class = "col-md-6">
                                                     <div class = "mb-3">
                                                         <label for = "code" class = "form-label">Code</label>
-                                                        <input type = "number" class = "form-control" id = "code" name = "code" placeholder = "Saisissez le code.." onKeyPress = "return false; return event.charCode>=48 && event.charCode<=57" required>
+                                                        <input type = "number" class = "form-control" id = "code" name = "code" placeholder = "Saisissez le code.." onKeyPress = "return event.charCode>=48 && event.charCode<=57" required>
                                                     </div>
                                                     @if (session()->has('erreur_code'))
                                                         <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_code')}}</p>
+                                                    @endif
+                                                </div>
+                                            </div>
+                                            <div class = "row">
+                                                <div class = "col-md-6">
+                                                    <div class = "mb-3">
+                                                        <label for = "maison_edition" class = "form-label">Maison d'édition</label>
+                                                        <input type = "text" class = "form-control" id = "maison_edition" name = "maison_edition" placeholder = "Saisissez la maison d'édition.." required>
+                                                    </div>
+                                                </div>
+                                                <div class = "col-md-6">
+                                                    <div class = "mb-3">
+                                                        <label for = "date_edition" class = "form-label">Date d'édition</label>
+                                                        <input type = "number" class = "form-control" id = "date_edition" name = "date_edition" placeholder = "Saisissez la date d'édition.." onKeyPress = "return event.charCode>=48 && event.charCode<=57" required>
+                                                    </div>
+                                                    @if (session()->has('erreur_date'))
+                                                        <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_date')}}</p>
                                                     @endif
                                                 </div>
                                             </div>

@@ -16,6 +16,8 @@
                 $table->string("titre_livre", 700)->default("Aucun");
                 $table->string("auteur_livre", 700)->default("Aucun");
                 $table->string("description_livre", 999)->default("Aucun");
+                $table->string("maison_edition_livre", 700)->default("Aucun");
+                $table->year("annee_edition_livre")->nullable();
                 $table->string("image_livre", 999)->default("Aucun");
             });
         }

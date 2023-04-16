@@ -100,6 +100,23 @@
                                                     </div>
                                                 </div>
                                                 <div class = "row">
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "maison_edition" class = "form-label">Maison d'édition</label>
+                                                            <input type = "text" class = "form-control" id = "maison_edition" name = "maison_edition" placeholder = "Saisissez la maison d'édition.." value = "{{$livre->getMaisonEditionLivreAttribute()}}"required>
+                                                        </div>
+                                                    </div>
+                                                    <div class = "col-md-6">
+                                                        <div class = "mb-3">
+                                                            <label for = "date_edition" class = "form-label">Date d'édition</label>
+                                                            <input type = "number" class = "form-control" id = "date_edition" name = "date_edition" placeholder = "Saisissez la date d'édition.." onKeyPress = "return event.charCode>=48 && event.charCode<=57" value = "{{$livre->getAnneeEditionLivreAttribute()}}" required>
+                                                        </div>
+                                                        @if (session()->has('erreur_date'))
+                                                            <p class = "text-danger mt-2 mb-2">{{session()->get('erreur_date')}}</p>
+                                                        @endif
+                                                    </div>
+                                                </div>
+                                                <div class = "row">
                                                     <div class = "col-md-12">
                                                         <label for = "description" class = "form-label">Description</label>
                                                         <textarea class = "form-control" name = "description" id = "description" placeholder = "Saisissez le la description.." required>{{$livre->getDescriptionLivreAttribute()}}</textarea>

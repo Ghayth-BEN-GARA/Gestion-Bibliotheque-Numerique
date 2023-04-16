@@ -53,6 +53,14 @@
                                     <i class= "mdi mdi-account-circle text-muted"></i>
                                     <b>Auteur : </b> {{$data->auteur_livre}}
                                 </span>
+                                <span class = "pe-2 text-nowrap mb-2 d-inline-block">
+                                    <i class= "mdi mdi-home text-muted"></i>
+                                    <b>Maison : </b> {{$data->maison_edition_livre}}
+                                </span>
+                                <span class = "pe-2 text-nowrap mb-2 d-inline-block">
+                                    <i class= "mdi mdi-calendar text-muted"></i>
+                                    <b>Année : </b> {{$data->annee_edition_livre}}
+                                </span>
                             </p>
                             <div id = "tooltip-container">
                                 <a href = "javascript:void(0)" data-bs-container = "#tooltip-container" data-bs-toggle = "tooltip" data-bs-placement = "top" title = "{{$data->prenom}} {{$data->nom}}" class = "d-inline-block">
